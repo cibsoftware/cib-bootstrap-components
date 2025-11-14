@@ -21,12 +21,7 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import path from 'path'
 
-// Detect build mode
-/* eslint-disable no-undef */
-const isLibrary = process.env.BUILD_MODE === 'library'
-/* eslint-enable no-undef */
-
-console.log('isLibrary', isLibrary)
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -40,31 +35,27 @@ export default defineConfig({
       vue: 'vue/dist/vue.esm-bundler.js'
     },
   },
-  build: isLibrary
-    ? {
-        lib: {
-          /* eslint-disable no-undef */
-          entry: path.resolve(__dirname, 'src/library.js'),
-          /* eslint-enable no-undef */
-          name: 'bootstrap-components',
-          formats: ['es', 'umd'],
-          fileName: (format) => `bootstrap-components.${format}.js`,
+  build: {
+    outDir: 'dist',
+    lib: {
+      entry: path.resolve(__dirname, 'src/library.js'),
+      name: 'bootstrap-components',
+      formats: ['es', 'umd'],
+      fileName: (format) => `bootstrap-components.${format}.js`
+    },
+    rollupOptions: {
+      external: ['vue', 'bootstrap', 'vue-i18n', 'vue-router'],
+      output: {
+        globals: {
+          vue: 'Vue',
+          bootstrap: 'bootstrap',
+          'vue-i18n': 'VueI18n',
+          'vue-router': 'VueRouter'
         },
-        rollupOptions: {
-          external: ['vue', 'bootstrap', 'vue-i18n', 'vue-router'],
-          output: {
-            globals: {
-              vue: 'Vue',
-              bootstrap: 'bootstrap',
-              'vue-i18n': 'VueI18n',
-              'vue-router': 'VueRouter'
-            },
-            // Ensure CSS is extracted and placed in the dist folder
-            assetFileNames: 'bootstrap-components.[ext]',
-          },
-        },
-        cssCodeSplit: true, // Ensure CSS is extracted into a separate file
-        outDir: 'dist', // The output directory
+        // Ensure CSS is extracted and placed in the dist folder
+        assetFileNames: 'bootstrap-components.[ext]',
       }
-    : {}
+    },
+    cssCodeSplit: true, // Ensure CSS is extracted into a separate file
+  }
 })
