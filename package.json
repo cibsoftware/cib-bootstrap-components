@@ -4,18 +4,19 @@
   "version": "2.1.1-dev.0",
   "type": "module",
   "license": "Apache-2.0",
-  "main": "./src/main.js",
+  "main": "dist/bootstrap-components.umd.js",
+  "module": "dist/bootstrap-components.es.js",
   "style": "dist/bootstrap-components.css",
   "files": [
-    "dist/bootstrap-components.css",
-    "dist/bootstrap-components.es.js",
-    "dist/bootstrap-components.umd.js"
+    "dist",
+    "src"
   ],
   "exports": {
     ".": {
       "import": "./dist/bootstrap-components.es.js",
       "require": "./dist/bootstrap-components.umd.js"
-    }
+    },
+    "./dist/style.css": "./dist/bootstrap-components.css"
   },
   "scripts": {
     "dev": "vite",
