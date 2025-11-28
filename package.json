@@ -1,7 +1,7 @@
 {
   "name": "@cib/bootstrap-components",
   "description": "Common vue components for building different web applications",
-  "version": "1.0.0",
+  "version": "1.0.1-dev.0",
   "type": "module",
   "license": "Apache-2.0",
   "main": "dist/bootstrap-components.umd.js",
@@ -48,8 +48,5 @@
     "vite": "6.4.1",
     "vite-plugin-vue-devtools": "7.7.6",
     "vitest": "3.1.3"
-  },
-  "publishConfig": {
-    "registry": "https://artifacts.cibseven.org/repository/npm-hosted/"
   }
 }
