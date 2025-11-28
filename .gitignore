@@ -31,4 +31,3 @@ coverage
 
 *.tsbuildinfo
 .npmrc
-package-lock.json
