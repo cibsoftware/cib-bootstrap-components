@@ -1,7 +1,7 @@
 {
   "name": "@cib/bootstrap-components",
   "description": "Common vue components for building different web applications",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "type": "module",
   "license": "Apache-2.0",
   "main": "dist/bootstrap-components.umd.js",
@@ -40,7 +40,7 @@
     "@vue/test-utils": "2.4.6",
     "cross-env": "7.0.3",
     "cypress": "14.3.3",
-    "eslint": "9.26.0",
+    "eslint": "9.39.1",
     "eslint-plugin-cypress": "4.3.0",
     "eslint-plugin-vue": "9.32.0",
     "jsdom": "26.1.0",
