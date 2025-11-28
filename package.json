@@ -1,7 +1,7 @@
 {
   "name": "@cib/bootstrap-components",
   "description": "Common vue components for building different web applications",
-  "version": "1.0.1",
+  "version": "1.0.2-dev.0",
   "type": "module",
   "license": "Apache-2.0",
   "main": "dist/bootstrap-components.umd.js",
