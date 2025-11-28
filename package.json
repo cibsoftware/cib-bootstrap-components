@@ -1,7 +1,7 @@
 {
   "name": "@cib/bootstrap-components",
   "description": "Common vue components for building different web applications",
-  "version": "2.1.1-dev.1",
+  "version": "2.1.1",
   "type": "module",
   "license": "Apache-2.0",
   "main": "dist/bootstrap-components.umd.js",
@@ -28,8 +28,8 @@
     "publish:dev": "npm run build && npm version prerelease --preid=dev --force && npm publish --registry https://nexus.cib.de/repository/npm-hosted-dev/ --tag dev"
   },
   "dependencies": {
-    "bootstrap": "5.3.6",
-    "vue": "3.5.13",
+    "bootstrap": "5.3.8",
+    "vue": "3.5.16",
     "vue-i18n": "11.1.10",
     "vue-router": "4.5.1"
   },
