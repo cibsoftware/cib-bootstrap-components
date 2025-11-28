@@ -69,6 +69,7 @@ export default {
     sizeClass() {
       if (this.size === 'sm') return 'form-select-sm'
       else if (this.size === 'lg') return 'form-select-lg'
+      else return ''
     },
     groupedOptions: function () {
       return this.options.map(option => {
