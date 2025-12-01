@@ -3,6 +3,7 @@
 @Library('cib-pipeline-library@npm') _
 
 import de.cib.pipeline.library.Constants
+import de.cib.pipeline.library.ConstantsInternal
 
 standardNPMPipeline(
     primaryBranch: 'main',
