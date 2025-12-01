@@ -28,6 +28,7 @@
 
 <script>
 export default {
+  name: 'BDdItemBtn',
   props: {
     buttonClass: {
       type: [String, Array, Object],

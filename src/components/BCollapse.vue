@@ -29,6 +29,7 @@
 
 <script>
 export default {
+  name: 'BCollapse',
   props: {
     id: {
       type: String,

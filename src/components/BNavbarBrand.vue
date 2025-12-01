@@ -24,6 +24,7 @@
 
 <script>
 export default {
+  name: 'BNavbarBrand',
   props: {
     to: String
   }

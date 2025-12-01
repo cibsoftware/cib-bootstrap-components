@@ -27,6 +27,7 @@
 import { createPopper } from '@popperjs/core'
 
 export default {
+  name: 'BPopover',
   props: {
     target: { type: [Function, String], required: false },
     placement: { type: String, default: 'bottom' }, // 'top', 'bottom', 'left', 'right'

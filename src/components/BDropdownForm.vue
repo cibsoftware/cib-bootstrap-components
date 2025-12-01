@@ -24,6 +24,7 @@
 
 <script>
 export default {
+  name: 'BDropdownForm',
   props: {
     formClass: {
       type: String,

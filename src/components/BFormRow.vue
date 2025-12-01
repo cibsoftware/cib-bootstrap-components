@@ -29,6 +29,7 @@
 
 <script>
 export default {
+  name: 'BFormRow',
   props: {
     customClass: {
       type: String,

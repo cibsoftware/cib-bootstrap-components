@@ -24,6 +24,7 @@
 
 <script>
 export default {
+  name: 'BDropdownGroup',
   props: {
     groupClass: {
       type: String,

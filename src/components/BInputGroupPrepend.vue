@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  name: 'BInputGroupPrepend',
   props: {
     text: {
       type: String,

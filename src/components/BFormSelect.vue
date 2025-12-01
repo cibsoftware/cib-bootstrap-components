@@ -50,6 +50,7 @@
 
 <script>
 export default {
+  name: 'BFormSelect',
   props: {
     helloWorld: {},
     modelValue: { type: [String, Number], default: null },

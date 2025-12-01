@@ -32,6 +32,7 @@
 
 <script>
 export default {
+  name: 'BFormGroup',
   props: {
     label: { type: String, default: '' },
     labelFor: { type: String, default: null },

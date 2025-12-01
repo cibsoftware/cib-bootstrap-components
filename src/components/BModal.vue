@@ -43,6 +43,7 @@ import * as Bootstrap from 'bootstrap'
 import BButton from './BButton.vue'
 
 export default {
+  name: 'BModal',
   components: {
     BButton
   },

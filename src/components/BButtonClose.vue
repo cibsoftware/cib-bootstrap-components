@@ -20,7 +20,10 @@
   <button type="button" class="btn-close float-end" :aria-label="$t('bcomponents.ariaLabelClose')" @click="$emit('click', $event)"> </button>
 </template>
 
-<script setup>
+<script>
+export default {
+  name: 'BButtonClose'
+}
 </script>
 
 <style scoped>

@@ -29,6 +29,7 @@
 import BButtonClose from './BButtonClose.vue'
 
 export default {
+  name: 'BAlert',
   props: {
     variant: { type: String, default: 'primary' },
     show: { type: [Number, Boolean], default: false }

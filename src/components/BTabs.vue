@@ -39,6 +39,7 @@
 
 <script>
 export default {
+  name: 'BTabs',
   props: {
     class: {
       type: String,

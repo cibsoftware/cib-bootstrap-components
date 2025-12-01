@@ -24,6 +24,7 @@
 
 <script>
 export default {
+  name: 'BListGroup',
   props: {
     label: { type: String, default: '' },
     labelFor: { type: String, default: null },

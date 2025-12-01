@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  name: 'BCard',
   props: {
     title: String,
     headingLevel: { type: Number, default: 2 }

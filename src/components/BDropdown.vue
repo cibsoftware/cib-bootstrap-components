@@ -32,6 +32,7 @@
 import * as Bootstrap from 'bootstrap'
 
 export default {
+  name: 'BDropdown',
   props: {
     title: String,
     variant: String,

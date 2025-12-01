@@ -28,6 +28,7 @@
 
 <script>
 export default {
+  name: 'BFormFile',
   props: {
     id: { type: String },
     label: { type: String },

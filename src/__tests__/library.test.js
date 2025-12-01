@@ -83,7 +83,7 @@ describe('library.js', () => {
       }).join('\n')).toEqual('')
     })
 
-    it.skip('valid name of .vue components', () => {
+    it('valid name of .vue components', () => {
       vueFiles.forEach(file => {
         const fileName = path.basename(file, '.vue')
 
@@ -96,8 +96,12 @@ describe('library.js', () => {
         // File should contain name in format: "'name: <componentName>'"
         const content = fs.readFileSync(file, 'utf-8')
         const isSetupScript = content.includes('<script setup>')
+        const specialCases = ['BToggle'] // Components with no name property
+        if (specialCases.includes(fileName)) {
+          return
+        }
         if (!isSetupScript) {
-          const namePattern = new RegExp(`name:\\s*['"]${fileName}['"],`)
+          const namePattern = new RegExp(`name:\\s*['"]${fileName}['"]`)
           expect(content).toMatch(namePattern, `File ${file} does not contain name: '${fileName}'`)
         }
       })

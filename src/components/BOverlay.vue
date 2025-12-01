@@ -35,6 +35,7 @@
 
 <script>
 export default {
+  name: 'BOverlay',
   props: {
     show: { type: Boolean, default: false },
     opacity: { type: Number, default: 0.5 },

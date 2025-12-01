@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  name: 'BTab',
   props: {
     id: { type: String, required: true },
     title: { type: String, required: true }

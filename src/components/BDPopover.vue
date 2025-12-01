@@ -20,6 +20,7 @@
 import * as Bootstrap from 'bootstrap'
 
 export default {
+  name: 'BDPopover',
   mounted(el, binding) {
     let content = binding.value || el.getAttribute('data-bs-content') || ''
     let title = el.getAttribute('title') || ''
