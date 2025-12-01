@@ -22,7 +22,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:unit": "vitest",
+    "test:unit": "vitest run --reporter=default --reporter=junit --outputFile=target/vitest-reports/TEST-front-end.xml",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "publish:dev": "npm run build && npm version prerelease --preid=dev --force && npm publish --registry https://nexus.cib.de/repository/npm-hosted-dev/ --tag dev"
