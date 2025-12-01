@@ -68,6 +68,7 @@
 
 <script>
 export default {
+  name: 'BFormDatepicker',
   props: {
     modelValue: { type: [String, Date], default: () => new Date() },
     dateDisabledFn: { type: Function, default: null },

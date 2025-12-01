@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  name: 'BAvatar',
   props: {
     src: { type: String, default: '' },
     alt: { type: String, default: '' },

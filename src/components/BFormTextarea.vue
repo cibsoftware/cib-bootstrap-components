@@ -32,6 +32,7 @@
 
 <script>
 export default {
+  name: 'BFormTextarea',
   props: {
     modelValue: { type: [String, Number], default: '' },
     placeholder: { type: String, default: '' },

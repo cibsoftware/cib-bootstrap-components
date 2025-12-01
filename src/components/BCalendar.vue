@@ -67,6 +67,7 @@
 import BButton from './BButton.vue'
 
 export default {
+  name: 'BCalendar',
   components: {
     BButton
   },

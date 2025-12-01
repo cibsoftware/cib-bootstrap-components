@@ -27,6 +27,7 @@
 
 <script>
 export default {
+  name: 'BFormSelectOption',
   props: {
     modelValue: {
       type: [String, Number, Object, Boolean],

@@ -36,6 +36,7 @@
 <script>
 import BProgressBar from './BProgressBar.vue'
 export default {
+  name: 'BProgress',
   components: { BProgressBar },
     props: {
       variant: { type: String, default: '' },

@@ -27,6 +27,7 @@
 
 <script>
 export default {
+  name: 'BCol',
   props: {
     cols: {
       type: [Number, String],

@@ -57,6 +57,7 @@
 
 <script>
 export default {
+  name: 'BFormInput',
   props: {
     modelValue: { type: [String, Number], default: '' },
     placeholder: { type: String, default: '' },

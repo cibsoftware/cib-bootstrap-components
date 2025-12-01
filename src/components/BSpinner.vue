@@ -33,6 +33,7 @@
 
 <script>
 export default {
+  name: 'BSpinner',
   props: {
     type: { type: String, default: 'border' },
     variant: { type: String, default: '' },

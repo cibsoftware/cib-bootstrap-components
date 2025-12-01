@@ -30,6 +30,7 @@
 
 <script>
 export default {
+  name: 'BListGroupItem',
   props: {
     to: { type: [String, Object], default: null },
     href: { type: String, default: null },

@@ -32,6 +32,7 @@
 
 <script>
 export default {
+  name: 'BFormCheckbox',
   props: {
     modelValue: {
       type: [Boolean, Array],

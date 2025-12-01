@@ -24,6 +24,7 @@
 
 <script>
 export default {
+  name: 'BInputGroupText',
   props: {
     text: { type: String, default: '' },
     textClass: { type: String, default: '' },

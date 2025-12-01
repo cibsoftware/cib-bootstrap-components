@@ -29,6 +29,7 @@
 
 <script>
 export default {
+  name: 'BForm',
   props: {
     novalidate: { type: Boolean, default: false },
     formClass: { type: String, default: '' },

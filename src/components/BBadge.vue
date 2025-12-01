@@ -28,6 +28,7 @@
 
 <script>
 export default {
+  name: 'BBadge',
   props: {
     variant: {
       type: String,

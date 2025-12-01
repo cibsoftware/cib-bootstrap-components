@@ -33,6 +33,7 @@
 
 <script>
 export default {
+  name: 'BLink',
   props: {
     href: { type: String, default: null },
     to: { type: [String, Object], default: null },

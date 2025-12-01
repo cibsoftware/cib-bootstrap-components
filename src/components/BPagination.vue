@@ -46,6 +46,7 @@
 
 <script>
 export default {
+  name: 'BPagination',
   props: {
     modelValue: { type: Number, default: 1 },
     totalRows: { type: Number, required: true },

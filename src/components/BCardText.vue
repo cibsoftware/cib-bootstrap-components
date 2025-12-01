@@ -24,6 +24,7 @@
 
 <script>
 export default {
+  name: 'BCardText',
   props: {
     textClass: { type: String, default: '' }
   }

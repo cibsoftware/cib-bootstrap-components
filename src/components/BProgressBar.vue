@@ -24,6 +24,7 @@
 
 <script>
 export default {
+  name: 'BProgressBar',
   props: {
     label: { type: String, default: '' },
     value: { type: Number, required: true },

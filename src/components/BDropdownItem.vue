@@ -26,6 +26,7 @@
 
 <script>
 export default {
+  name: 'BDropdownItem',
   props: {
     active: Boolean,
     href: String,

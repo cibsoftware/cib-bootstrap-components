@@ -33,6 +33,7 @@
 
 <script>
 export default {
+  name: 'BButton',
   props: {
     variant: { type: String, default: 'primary' },
     block: { type: Boolean, default: false },
