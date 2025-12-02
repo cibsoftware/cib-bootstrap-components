@@ -1,14 +1,10 @@
 {
 	"confirm": {
-		"title": "Bitte bestätigen",
 		"ok": "Ok",
 		"cancel": "Abbrechen",
 		"close": "Schließen"
 	},
 	"bcomponents": {
-		"ariaSortAsc": "Aufsteigend",
-		"ariaSortDes": "Absteigend",
-		"ariaSortNone": "Keine",
 		"ariaLabelDropdownGroup": "Dropdown-Gruppe",
 		"calendar": {
 			"selectedDate": "Ausgewähltes Datum",
@@ -18,7 +14,6 @@
 			"nextMonth": "Nächster Monat",
 			"nextYear": "Nächstes Jahr",
 			"daysOfWeek": "Mo,Di,Mi,Do,Fr,Sa,So",
-			"dayOfWeek": "Wochentag",
 			"today": "Heute",
 			"clearSelection": "Auswahl löschen"
 		},

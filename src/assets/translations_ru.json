@@ -1,14 +1,10 @@
 {
 	"confirm": {
-		"title": "Необходимо подтверждение",
 		"ok": "OK",
 		"cancel": "Отмена",
 		"close": "Закрыть"
 	},
 	"bcomponents": {
-		"ariaSortAsc": "По возрастанию",
-		"ariaSortDes": "По убыванию",
-		"ariaSortNone": "Без сортировки",
 		"ariaLabelDropdownGroup": "Группа выпадающих элементов",
 		"calendar": {
 			"selectedDate": "Выбранная дата",
@@ -18,7 +14,6 @@
 			"nextMonth": "Следующий месяц",
 			"nextYear": "Следующий год",
 			"daysOfWeek": "Пн,Вт,Ср,Чт,Пт,Сб,Вс",
-			"dayOfWeek": "День недели",
 			"today": "Сегодня",
 			"clearSelection": "Очистить выбор"
 		},

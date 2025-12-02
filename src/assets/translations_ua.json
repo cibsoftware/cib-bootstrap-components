@@ -1,14 +1,10 @@
 {
 	"confirm": {
-		"title": "Потрібне підтвердження",
 		"ok": "OK",
 		"cancel": "Скасувати",
 		"close": "Закрити"
 	},
 	"bcomponents": {
-		"ariaSortAsc": "За зростанням",
-		"ariaSortDes": "За спаданням",
-		"ariaSortNone": "Без сортування",
 		"ariaLabelDropdownGroup": "Група випадаючих елементів",
 		"calendar": {
 			"selectedDate": "Вибрана дата",
@@ -18,7 +14,6 @@
 			"nextMonth": "Наступний місяць",
 			"nextYear": "Наступний рік",
 			"daysOfWeek": "Пн,Вт,Ср,Чт,Пт,Сб,Нд",
-			"dayOfWeek": "День тижня",
 			"today": "Сьогодні",
 			"clearSelection": "Очистити вибір"
 		},
