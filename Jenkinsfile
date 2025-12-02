@@ -6,7 +6,7 @@ import de.cib.pipeline.library.Constants
 import de.cib.pipeline.library.ConstantsInternal
 
 standardNPMPipeline(
-    primaryBranch: 'main',
+    primaryBranch: 'master-pipeline',
     uiParamPresets: [
         'UNIT_TESTS': true,
         'SAST': true
