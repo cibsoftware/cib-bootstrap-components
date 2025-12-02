@@ -17,7 +17,7 @@
 
 -->
 <template>
-  <button type="button" class="btn-close float-end" :aria-label="$t('bcomponents.ariaLabelClose')" @click="$emit('click', $event)"> </button>
+  <button type="button" class="btn-close float-end" :aria-label="$t('confirm.close')" @click="$emit('click', $event)"> </button>
 </template>
 
 <script>

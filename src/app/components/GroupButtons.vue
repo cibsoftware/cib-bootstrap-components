@@ -37,8 +37,8 @@
   </div>
 
   <div>
-    <pre><code v-pre>i18n: &lt;BButton @click="$refs.assignationModal.hide()"&gt;{{$t('bcomponents.ariaLabelClose')}}&lt;/BButton&gt;</code></pre>
-    <BButton @click="$refs.assignationModal.hide()">{{$t('bcomponents.ariaLabelClose')}}</BButton>
+    <pre><code v-pre>i18n: &lt;BButton @click="$refs.assignationModal.hide()"&gt;{{$t('confirm.close')}}&lt;/BButton&gt;</code></pre>
+    <BButton @click="$refs.assignationModal.hide()">{{$t('confirm.close')}}</BButton>
   </div>
 </template>
 
