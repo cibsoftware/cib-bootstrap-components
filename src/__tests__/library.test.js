@@ -14,7 +14,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import * as library from '@/library.js'
 
 // Node.js modules for file system and path
@@ -104,6 +104,58 @@ describe('library.js', () => {
           const namePattern = new RegExp(`name:\\s*['"]${fileName}['"]`)
           expect(content).toMatch(namePattern, `File ${file} does not contain name: '${fileName}'`)
         }
+      })
+    })
+  })
+
+  describe('mergeLocaleMessage', () => {
+    it('should be exported from library', () => {
+      expect(library.mergeLocaleMessage).toBeDefined()
+      expect(typeof library.mergeLocaleMessage).toBe('function')
+    })
+
+    const mockI18n = {
+      global: {
+        mergeLocaleMessage: vi.fn()
+      }
+    }
+
+    it.each([
+      'en',
+      'de',
+      'es',
+      'ru',
+      'ua'
+    ])('should have translations for supported language: %s', (lang) => {
+      library.mergeLocaleMessage(mockI18n, lang)
+      expect(mockI18n.global.mergeLocaleMessage).toHaveBeenCalledWith(lang, expect.any(Object))
+    })
+
+    it('should fall back to English for unsupported language', () => {
+      const mockI18n = {
+        global: {
+          mergeLocaleMessage: vi.fn()
+        }
+      }
+
+      library.mergeLocaleMessage(mockI18n, 'fr')
+
+      expect(mockI18n.global.mergeLocaleMessage).toHaveBeenCalledWith('fr', expect.any(Object))
+    })
+
+    it('should have translation content for all supported languages', async () => {
+      const translations = {
+        en: await import('@/assets/translations_en.json'),
+        de: await import('@/assets/translations_de.json'),
+        es: await import('@/assets/translations_es.json'),
+        ru: await import('@/assets/translations_ru.json'),
+        ua: await import('@/assets/translations_ua.json')
+      }
+
+      Object.entries(translations).forEach(([lang, translation]) => {
+        expect(lang).toBeDefined()
+        expect(translation.default).toBeDefined()
+        expect(Object.keys(translation.default).length).toBeGreaterThan(0)
       })
     })
   })
