@@ -1,6 +1,6 @@
 #!groovy
 
-@Library('cib-pipeline-library@npm') _
+@Library('cib-pipeline-library') _
 
 import de.cib.pipeline.library.Constants
 import de.cib.pipeline.library.ConstantsInternal
@@ -8,7 +8,8 @@ import de.cib.pipeline.library.ConstantsInternal
 standardNPMPipeline(
     primaryBranch: 'main',
     uiParamPresets: [
-        'UNIT_TESTS': true
+        'UNIT_TESTS': true,
+        'SAST': true
     ],
     testResultsPattern: ConstantsInternal.MAVEN_TEST_RESULTS,
     npmCredentialsId: Constants.CIBSEVEN_NPM_CREDENTIALS_ID,
