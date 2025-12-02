@@ -17,6 +17,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
+import { findComponents } from './utils.js'
 
 function getTranslation(lang) {
   // eslint-disable-next-line no-undef
@@ -156,7 +157,7 @@ function reportSameValuesTable(objBase, objTest, languages, path) {
   return true
 }
 
-describe('translations', () => {
+describe('i18n', () => {
   const languages = ['de', 'en', 'es', 'ru', 'ua']
 
   describe('loadable', () => {
@@ -188,6 +189,50 @@ describe('translations', () => {
       const filteredLanguages = languages.filter(lang => lang !== 'en')
       const translations = filteredLanguages.map(lang => getTranslation(lang))
       expect(reportSameValuesTable(translationEn, translations, filteredLanguages, '')).toBeTruthy()
+    })
+  })
+
+  describe('usage', () => {
+    it(`all en keys should be used`, () => {
+      const translationEn = getTranslation('en')
+
+      // convert transaltion object to flat list of keys
+      const stringKeys = []
+      const extractKeys = (obj, path) => {
+        if (typeof obj === 'string') {
+          stringKeys.push({ path: path, value: obj })
+        } else if (typeof obj === 'object' && obj !== null) {
+          for (const key of Object.keys(obj)) {
+            extractKeys(obj[key], path.concat(key))
+          }
+        }
+      }
+      extractKeys(translationEn, [])
+
+      // Find all .vue files in /src/
+      const vueFiles = findComponents('src', '.vue')
+      expect(vueFiles.length).toBeGreaterThan(0)
+
+      // Check usage of each key in .vue files
+      // When found in any file, we consider it used => remove from list
+      for (const file of vueFiles) {
+        const content = readFileSync(file, 'utf-8')
+
+        for (let i = stringKeys.length - 1; i >= 0; i--) {
+          const keyPath = stringKeys[i].path.join('.')
+          const usagePattern = new RegExp(`\\$t\\(\\s*['"\`]${keyPath}['"\`]`)
+          if (usagePattern.test(content)) {
+            // Found usage, remove from list
+            stringKeys.splice(i, 1)
+          }
+        }
+      }
+
+      // Report unused keys
+      if (stringKeys.length > 0) {
+        console.log(`Unused translation keys in en (checked ${vueFiles.length} .vue files):\n`, '\n' + stringKeys.map(k => `- ${k.path.join('.')} = "${k.value}"`).join('\n'))
+      }
+      expect(stringKeys.length).toBe(0)
     })
   })
 })

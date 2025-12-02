@@ -16,26 +16,11 @@
  */
 import { describe, it, expect, vi } from 'vitest'
 import * as library from '@/library.js'
+import { findComponents } from './utils.js'
 
 // Node.js modules for file system and path
 import fs from 'fs'
 import path from 'path'
-
-// Helper to recursively find all .vue files in /src/
-function findComponents(dir, extension = '.vue') {
-  let results = []
-  const list = fs.readdirSync(dir)
-  list.forEach(file => {
-    const filePath = path.join(dir, file)
-    const stat = fs.statSync(filePath)
-    if (stat && stat.isDirectory()) {
-      results = results.concat(findComponents(filePath, extension))
-    } else if (file.endsWith(extension)) {
-      results.push(filePath)
-    }
-  })
-  return results
-}
 
 describe('library.js', () => {
   // eslint-disable-next-line no-undef
@@ -132,14 +117,7 @@ describe('library.js', () => {
     })
 
     it('should fall back to English for unsupported language', () => {
-      const mockI18n = {
-        global: {
-          mergeLocaleMessage: vi.fn()
-        }
-      }
-
       library.mergeLocaleMessage(mockI18n, 'fr')
-
       expect(mockI18n.global.mergeLocaleMessage).toHaveBeenCalledWith('fr', expect.any(Object))
     })
 
