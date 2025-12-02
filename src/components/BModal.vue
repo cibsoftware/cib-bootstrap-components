@@ -22,7 +22,7 @@
       <div class="modal-content" :class="{ 'modal-dialog-scrollable': scrollable }">
         <div class="modal-header" :class="headerClass">
           <h5 class="modal-title" :id="'modal-title'">{{ title }}</h5>
-          <button type="button" class="btn-close" @click="hide('headerclose')" :aria-label="$t('bcomponents.ariaLabelClose')"></button>
+          <button type="button" class="btn-close" @click="hide('headerclose')" :aria-label="$t('confirm.close')"></button>
         </div>
         <div class="modal-body" :class="bodyClass">
           <slot></slot>
