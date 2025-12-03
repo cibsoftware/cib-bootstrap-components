@@ -22,9 +22,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:jenkinsfile": "vitest run --coverage --reporter=default --reporter=junit --outputFile=target/vitest-reports/TEST-front-end.xml",
     "test:coverage": "vitest run --coverage",
-    "test:unit": "vitest run --reporter=default --reporter=junit --outputFile=target/vitest-reports/TEST-front-end.xml",
+    "test:unit": "vitest run --coverage --reporter=default --reporter=junit --outputFile=target/vitest-reports/TEST-front-end.xml",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "publish:dev": "npm run build && npm version prerelease --preid=dev --force && npm publish --registry https://nexus.cib.de/repository/npm-hosted-dev/ --tag dev"
