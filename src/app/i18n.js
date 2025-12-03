@@ -21,13 +21,15 @@ import de from '../assets/translations_de.json'
 import es from '../assets/translations_es.json'
 import it from '../assets/translations_it.json'
 import ru from '../assets/translations_ru.json'
+import ua from '../assets/translations_ua.json'
 
 export const languages = {
   en: en,
   de: de,
   es: es,
   it: it,
-  ru: ru
+  ru: ru,
+  ua: ua
 }
 
 const i18n = createI18n({
