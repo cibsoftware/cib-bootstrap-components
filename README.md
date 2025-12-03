@@ -25,8 +25,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 // Import the component library
 import { registerComponents } from '@cib/bootstrap-components'
-// Optionally import component-specific styles if needed
-// import '@cib/bootstrap-components/dist/bootstrap-components.css'
+import '@cib/bootstrap-components/dist/bootstrap-components.css'
 
 const app = createApp(App)
 
