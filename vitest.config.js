@@ -25,6 +25,27 @@ export default mergeConfig(
       environment: 'jsdom',
       exclude: [...configDefaults.exclude, 'e2e/**'],
       root: fileURLToPath(new URL('./', import.meta.url)),
+      coverage: {
+        provider: 'istanbul',
+        reporter: ['text', 'lcov', 'cobertura'], // 'text', 'html', 'lcov', 'cobertura'
+        reportsDirectory: './target/coverage',
+        exclude: [
+          // Build artifacts and minified files
+          'dist/**',
+          'target/**',
+          'node_modules/**',
+
+          // Exlclude app files
+          'src/app/**',
+
+          // Test and config files
+          'cypress/e2e/**', // Exclude Cypress tests
+          'cypress.config.js', // Exclude Cypress config
+          'vite.config.js', // Exclude Vite config
+          'vitest.config.js', // Exclude this config file itself
+          '**/*.config.js', // Exclude all config files
+        ],
+      },
     },
   }),
 )

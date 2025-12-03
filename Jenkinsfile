@@ -7,11 +7,19 @@ import de.cib.pipeline.library.ConstantsInternal
 
 standardNPMPipeline(
     primaryBranch: 'main',
+
+    // Auto enable unit test and SAST
     uiParamPresets: [
         'UNIT_TESTS': true,
         'SAST': true
     ],
+
+    // Test configuration
+    testCommand: 'test:jenkinsfile', // unit tests + coverage
     testResultsPattern: ConstantsInternal.MAVEN_TEST_RESULTS,
+    coveragePattern: 'target/coverage/cobertura-coverage.xml',
+
+    // Publish configuration
     npmCredentialsId: Constants.CIBSEVEN_NPM_CREDENTIALS_ID,
     npmDevRegistry: Constants.CIBSEVEN_NPM_REGISTRY_DEV_URL,
     npmReleaseRegistry: Constants.CIBSEVEN_NPM_REGISTRY_RELEASE_URL
