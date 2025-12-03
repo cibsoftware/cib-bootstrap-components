@@ -1,5 +1,50 @@
 # bootstrap-components
 
+## Installation
+
+```sh
+npm install @cib/bootstrap-components
+```
+
+**Note:** This library requires Bootstrap 5.3.8+ as a peer dependency. Install it in your project:
+
+```sh
+npm install bootstrap
+```
+
+## Usage
+
+In your main application entry file (e.g., `main.js`):
+
+```javascript
+import { createApp } from 'vue'
+import App from './App.vue'
+
+// Import Bootstrap CSS (once in your app)
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+// Import the component library
+import { registerComponents } from '@cib/bootstrap-components'
+import '@cib/bootstrap-components/dist/bootstrap-components.css'
+
+const app = createApp(App)
+
+// Register all components
+registerComponents(app)
+
+app.mount('#app')
+```
+
+**Alternative: Import individual components**
+
+```javascript
+import { BButton, BCard, BModal } from '@cib/bootstrap-components'
+
+app.component('b-button', BButton)
+app.component('b-card', BCard)
+app.component('b-modal', BModal)
+```
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
