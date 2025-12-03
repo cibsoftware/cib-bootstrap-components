@@ -15,7 +15,7 @@ standardNPMPipeline(
     ],
 
     // Test configuration
-    testCommand: 'test:jenkinsfile', // unit tests + coverage
+    testCommand: 'npm run test:jenkinsfile', // unit tests + coverage
     testResultsPattern: ConstantsInternal.MAVEN_TEST_RESULTS,
     coveragePattern: 'target/coverage/cobertura-coverage.xml',
 
