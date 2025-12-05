@@ -5,57 +5,57 @@
 		"close": "Chiudere"
 	},
 	"bcomponents": {
-		"ariaLabelDropdownGroup": "Dropdown group",
+		"ariaLabelDropdownGroup": "Gruppo a discesa",
 		"calendar": {
-			"selectedDate": "Selected date",
-			"noDate": "No date",
-			"prevYear": "Previous year",
-			"prevMonth": "Previous month",
-			"nextMonth": "Next month",
-			"nextYear": "Next year",
-			"daysOfWeek": "Mon,Tue,Wed,Thu,Fri,Sat,Sun",
-			"today": "Today",
-			"clearSelection": "Clear selection"
+			"selectedDate": "Data selezionata",
+			"noDate": "Nessuna data",
+			"prevYear": "Anno precedente",
+			"prevMonth": "Mese precedente",
+			"nextMonth": "Mese successivo",
+			"nextYear": "Anno successivo",
+			"daysOfWeek": "Lun,Mar,Mer,Gio,Ven,Sab,Dom",
+			"today": "Oggi",
+			"clearSelection": "Cancella selezione"
 		},
 		"avatar": {
-			"avatarFor": "Avatar of {name}",
+			"avatarFor": "Avatar di {name}",
 			"defaultAvatar": "Avatar"
 		},
 		"formTag": {
-			"remove": "Remove tag"
+			"remove": "Rimuovi etichetta"
 		},
 		"timepicker": {
-			"label": "Time picker",
-			"selectedTime": "Selected time",
-			"incrementHour": "Increase hour",
-			"decrementHour": "Decrease hour",
-			"incrementMinute": "Increase minute",
-			"decrementMinute": "Decrease minute",
-			"hour": "Hour",
-			"minute": "Minute",
-			"clearSelection": "Clear selection",
-			"noTimeSelected": "No time selected"
+			"label": "Selettore orario",
+			"selectedTime": "Orario selezionato",
+			"incrementHour": "Aumenta ora",
+			"decrementHour": "Diminuisci ora",
+			"incrementMinute": "Aumenta minuto",
+			"decrementMinute": "Diminuisci minuto",
+			"hour": "Ora",
+			"minute": "Minuto",
+			"clearSelection": "Cancella selezione",
+			"noTimeSelected": "Nessun orario selezionato"
 		},
 		"datepicker": {
-			"label": "Date picker",
-			"selectedDate": "Selected date",
-			"noDate": "No date",
-			"prevMonth": "Previous month",
-			"nextMonth": "Next month",
-			"daysOfWeek": "Mon,Tue,Wed,Thu,Fri,Sat,Sun",
-			"selectToday": "Today",
-			"clearSelection": "Clear selection"
+			"label": "Selettore data",
+			"selectedDate": "Data selezionata",
+			"noDate": "Nessuna data",
+			"prevMonth": "Mese precedente",
+			"nextMonth": "Mese successivo",
+			"daysOfWeek": "Lun,Mar,Mer,Gio,Ven,Sab,Dom",
+			"selectToday": "Oggi",
+			"clearSelection": "Cancella selezione"
 		},
 		"navbar": {
-			"mainNavigation": "Main navigation",
-			"toggleNavigation": "Toggle navigation",
-			"brand": "Brand",
-			"toggleDropdown": "Toggle dropdown"
+			"mainNavigation": "Navigazione principale",
+			"toggleNavigation": "Attiva/disattiva navigazione",
+			"brand": "Marchio",
+			"toggleDropdown": "Attiva/disattiva menu a discesa"
 		},
 		"pagination": {
-			"label": "Pagination",
-			"prevPage": "Previous page",
-			"nextPage": "Next page"
+			"label": "Impaginazione",
+			"prevPage": "Pagina precedente",
+			"nextPage": "Pagina successiva"
 		}
 	}
 }

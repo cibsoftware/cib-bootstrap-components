@@ -74,6 +74,9 @@ function skipValue(value, lang) {
     'es': [
       'avatar'
     ],
+    'it': [
+      'avatar'
+    ],
     'ua': [
     ],
     'ru': [
