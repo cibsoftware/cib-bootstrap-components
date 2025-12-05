@@ -58,9 +58,7 @@ function haveSameProperties(objBase, objTest, path) {
 }
 
 function skipPath(path) {
-  return path.includes('.operators.') || path.includes('.cib-header.')
-    || path.includes('.flowModalSupport.phoneNumber')
-    || path.includes('.flowModalSupport.email')
+  return !path
 }
 
 function skipValue(value, lang) {
@@ -158,7 +156,7 @@ function reportSameValuesTable(objBase, objTest, languages, path) {
 }
 
 describe('i18n', () => {
-  const languages = ['de', 'en', 'es', 'ru', 'ua']
+  const languages = ['de', 'en', 'es', 'it', 'ru', 'ua']
 
   describe('loadable', () => {
     languages.forEach(lang => {
