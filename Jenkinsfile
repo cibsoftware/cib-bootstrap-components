@@ -1,12 +1,12 @@
 #!groovy
 
-@Library('cib-pipeline-library@master') _
+@Library('cib-pipeline-library@npm-dependencyTrackSynchronous') _
 
 import de.cib.pipeline.library.Constants
 import de.cib.pipeline.library.ConstantsInternal
 
 standardNPMPipeline(
-    primaryBranch: 'main',
+    primaryBranch: 'PR-23',
 
     // Auto enable unit test and SAST
     uiParamPresets: [
