@@ -143,7 +143,7 @@ export default {
       const lastDay = new Date(year, month + 1, 0)
 
       const days = []
-      var date = ''
+      let date = ''
 
       // Days from previous month
       for (let i = firstDay.getDay() - 1; i > 0; i--) {
