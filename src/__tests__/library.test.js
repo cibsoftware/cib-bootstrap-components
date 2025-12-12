@@ -17,10 +17,8 @@
 import { describe, it, expect, vi } from 'vitest'
 import * as library from '@/library.js'
 import { findComponents } from './utils.js'
-
-// Node.js modules for file system and path
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 
 describe('library.js', () => {
   // eslint-disable-next-line no-undef
