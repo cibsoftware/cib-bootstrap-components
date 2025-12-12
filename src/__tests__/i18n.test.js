@@ -19,6 +19,8 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { findComponents } from './utils.js'
 
+const languages = ['de', 'en', 'es', 'it', 'ru', 'ua']
+
 function getTranslation(lang) {
   // eslint-disable-next-line no-undef
   const filePath = resolve(__dirname, `../assets/translations_${lang}.json`)
@@ -41,9 +43,13 @@ function haveSameProperties(objBase, objTest, path) {
     const keysBase = Object.keys(objBase)
     const keysTest = Object.keys(objTest)
 
+    // Sort keys for comparison
+    keysBase.sort()
+    keysTest.sort()
+
     // Compare key sets
-    const keysBaseSorted = keysBase.sort().join(',')
-    const keysTestSorted = keysTest.sort().join(',')
+    const keysBaseSorted = keysBase.join(',')
+    const keysTestSorted = keysTest.join(',')
     expect(keysBaseSorted, `Missing/extra key for "${path}" path`).toBe(keysTestSorted)
 
     // Recurse into nested objects
@@ -88,7 +94,7 @@ function skipValue(value, lang) {
 }
 
 function reportSameValues(objBase, objTest, path, lang) {
-  var status = true
+  let status = true
 
   // Check if both are objects and not null
   expect(objBase).not.toBeNull()
@@ -117,30 +123,31 @@ function reportSameValues(objBase, objTest, path, lang) {
   return status
 }
 
-var hasHeader = false
+let hasHeader = false
 function reportSameValuesTable(objBase, objTest, languages, path) {
   // Check if both are objects and not null
   expect(objBase).not.toBeNull()
   expect(objTest).not.toBeNull()
 
+  if (skipPath(path)) {
+    return true
+  }
+
   if (typeof objBase === 'string') {
-    if (!skipPath(path)) {
+    const hasSameValues = objTest.map(
+      (v, index) => objBase === v && !skipValue(objBase, languages[index])
+    ).find(v => v)
+    if (hasSameValues) {
 
-      const hasSameValues = objTest.map(
-        (v, index) => objBase === v && !skipValue(objBase, languages[index])
-      ).find(v => v)
-      if (hasSameValues) {
-
-        if (!hasHeader) {
-          console.log(`Error: Next strings have the same values comparing to EN`)
-          hasHeader = true
-        }
-
-        const v = objTest.map(
-          (v, index) => (objBase === v && !skipValue(objBase, languages[index])) ? languages[index] : '  '
-        ).join(' | ')
-        console.log(`| en | ${v} | ${path} |`)
+      if (!hasHeader) {
+        console.log(`Error: Next strings have the same values comparing to EN`)
+        hasHeader = true
       }
+
+      const v = objTest.map(
+        (v, index) => (objBase === v && !skipValue(objBase, languages[index])) ? languages[index] : '  '
+      ).join(' | ')
+      console.log(`| en | ${v} | ${path} |`)
     }
   }
   else {
@@ -159,8 +166,6 @@ function reportSameValuesTable(objBase, objTest, languages, path) {
 }
 
 describe('i18n', () => {
-  const languages = ['de', 'en', 'es', 'it', 'ru', 'ua']
-
   describe('loadable', () => {
     languages.forEach(lang => {
       it(`${lang}`, () => {
@@ -172,24 +177,21 @@ describe('i18n', () => {
 
   describe('compare en with', () => {
     const translationEn = getTranslation('en')
-    languages.filter(lang => lang !== 'en').forEach(lang => {
-      it(`${lang}`, () => {
-        const translationLang = getTranslation(lang)
-        expect(haveSameProperties(translationEn, translationLang, lang)).toBeTruthy()
-      })
+    const additionalLanguages = languages.filter(lang => lang !== 'en')
+
+    it.each(additionalLanguages)(`en.keys === %s.keys`, (lang) => {
+      const translationLang = getTranslation(lang)
+      expect(haveSameProperties(translationEn, translationLang, lang)).toBeTruthy()
     })
 
-    languages.filter(lang => lang !== 'en').forEach(lang => {
-      it(`${lang}, report same values`, () => {
-        const translationLang = getTranslation(lang)
-        expect(reportSameValues(translationEn, translationLang, lang, lang)).toBeTruthy()
-      })
+    it.each(additionalLanguages)(`en !== %s, report same values`, (lang) => {
+      const translationLang = getTranslation(lang)
+      expect(reportSameValues(translationEn, translationLang, lang, lang)).toBeTruthy()
     })
 
     it(`same values as table`, () => {
-      const filteredLanguages = languages.filter(lang => lang !== 'en')
-      const translations = filteredLanguages.map(lang => getTranslation(lang))
-      expect(reportSameValuesTable(translationEn, translations, filteredLanguages, '')).toBeTruthy()
+      const translations = additionalLanguages.map(lang => getTranslation(lang))
+      expect(reportSameValuesTable(translationEn, translations, additionalLanguages, '')).toBeTruthy()
     })
   })
 
@@ -221,6 +223,13 @@ describe('i18n', () => {
 
         for (let i = stringKeys.length - 1; i >= 0; i--) {
           const keyPath = stringKeys[i].path.join('.')
+
+          // Remove ignored paths
+          if (skipPath(keyPath)) {
+            stringKeys.splice(i, 1)
+            continue
+          }
+
           const usagePattern = new RegExp(`\\$t\\(\\s*['"\`]${keyPath}['"\`]`)
           if (usagePattern.test(content)) {
             // Found usage, remove from list
