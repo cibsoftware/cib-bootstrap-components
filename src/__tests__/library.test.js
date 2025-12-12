@@ -15,7 +15,7 @@
  *  limitations under the License.
  */
 import { describe, it, expect, vi } from 'vitest'
-import * as library from '@/library.js'
+import * as library from '../library.js'
 import { findComponents } from './utils.js'
 import fs from 'node:fs'
 import path from 'node:path'
