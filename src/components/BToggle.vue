@@ -41,6 +41,3 @@ const BToggle = eventBus => {
 
 export default BToggle
 </script>
-
-<style scoped>
-</style>

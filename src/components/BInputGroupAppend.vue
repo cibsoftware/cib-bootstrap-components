@@ -27,6 +27,3 @@ export default {
   name: 'BInputGroupAppend'
 }
 </script>
-
-<style scoped>
-</style>

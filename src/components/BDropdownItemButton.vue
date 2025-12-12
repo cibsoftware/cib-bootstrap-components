@@ -29,6 +29,3 @@ export default {
   name: 'BDropdownItemButton'
 }
 </script>
-
-<style scoped>
-</style>

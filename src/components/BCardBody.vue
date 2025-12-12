@@ -27,6 +27,3 @@ export default {
   name: 'BCardBody'
 }
 </script>
-
-<style scoped>
-</style>

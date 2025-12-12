@@ -27,6 +27,3 @@ export default {
   name: 'BNavbar'
 }
 </script>
-
-<style scoped>
-</style>

@@ -97,6 +97,3 @@ export default {
   inheritAttrs: false
 }
 </script>
-
-<style scoped>
-</style>

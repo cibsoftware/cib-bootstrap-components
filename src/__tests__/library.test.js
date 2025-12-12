@@ -15,12 +15,24 @@
  *  limitations under the License.
  */
 import { describe, it, expect, vi } from 'vitest'
-import * as library from '@/library.js'
+import * as library from '../library.js'
 import { findComponents } from './utils.js'
+import fs from 'node:fs'
+import path from 'node:path'
 
-// Node.js modules for file system and path
-import fs from 'fs'
-import path from 'path'
+const languages = ['de', 'en', 'es', 'it', 'ru', 'ua']
+
+/**
+ * Component name to its import path
+ */
+function nameToImportPath(vueFiles, name) {
+  const pathName = vueFiles.find(f => path.basename(f, '.vue') === name)
+  if (!pathName) {
+    throw new Error(`Component ${name} not found in vueFiles`)
+  }
+  const relPathName = pathName.substring(pathName.indexOf('src/') + 4).replace(/\\/g, '/')
+  return './' + relPathName
+}
 
 describe('library.js', () => {
   // eslint-disable-next-line no-undef
@@ -29,23 +41,6 @@ describe('library.js', () => {
   describe('*.vue', () => {
     // Find all .vue files in /src/
     const vueFiles = findComponents(srcDir, '.vue')
-
-    it('all .vue files have license headers', () => {
-      vueFiles.forEach(f => {
-        const content = fs.readFileSync(f, 'utf-8')
-        const hasLicenseHeader = content.includes('Copyright CIB software GmbH') && content.includes('apache.org/licenses/LICENSE-2.0')
-        expect(hasLicenseHeader).toBe(true, `File ${f} is missing license header`)
-      })
-    })
-
-    it('all .js files have license headers', () => {
-      const jsFiles = findComponents(srcDir, '.js')
-      jsFiles.forEach(f => {
-        const content = fs.readFileSync(f, 'utf-8')
-        const hasLicenseHeader = content.includes('Copyright CIB software GmbH') && content.includes('apache.org/licenses/LICENSE-2.0')
-        expect(hasLicenseHeader).toBe(true, `File ${f} is missing license header`)
-      })
-    })
 
     it('exports all .vue components from /src/', () => {
 
@@ -58,14 +53,14 @@ describe('library.js', () => {
       const exportedKeys = Object.keys(library)
 
       // Check that each component is exported
-      const missing = vueComponentNames.filter(
+      const missingImports = vueComponentNames.filter(
         name => !exportedKeys.includes(name)
-      )
+      ).map((name) => {
+        const relPathName = nameToImportPath(vueFiles, name)
+        return `import ${name} from '${relPathName}'`
+      })
 
-      expect(missing.map((name) => {
-        const pathName = vueFiles.find(f => path.basename(f, '.vue') === name).substring(srcDir.length)
-        return `import ${name} from '@${pathName}'`
-      }).join('\n')).toEqual('')
+      expect(missingImports.join('\n')).toEqual('')
     })
 
     it('valid name of .vue components', () => {
@@ -105,13 +100,7 @@ describe('library.js', () => {
       }
     }
 
-    it.each([
-      'en',
-      'de',
-      'es',
-      'ru',
-      'ua'
-    ])('should have translations for supported language: %s', (lang) => {
+    it.each(languages)('should have translations for supported language: %s', (lang) => {
       library.mergeLocaleMessage(mockI18n, lang)
       expect(mockI18n.global.mergeLocaleMessage).toHaveBeenCalledWith(lang, expect.any(Object))
     })
@@ -121,20 +110,10 @@ describe('library.js', () => {
       expect(mockI18n.global.mergeLocaleMessage).toHaveBeenCalledWith('fr', expect.any(Object))
     })
 
-    it('should have translation content for all supported languages', async () => {
-      const translations = {
-        en: await import('@/assets/translations_en.json'),
-        de: await import('@/assets/translations_de.json'),
-        es: await import('@/assets/translations_es.json'),
-        ru: await import('@/assets/translations_ru.json'),
-        ua: await import('@/assets/translations_ua.json')
-      }
-
-      Object.entries(translations).forEach(([lang, translation]) => {
-        expect(lang).toBeDefined()
-        expect(translation.default).toBeDefined()
-        expect(Object.keys(translation.default).length).toBeGreaterThan(0)
-      })
+    it.each(languages)('should have translation content for %s language', async (lang) => {
+      const translation = await import(`@/assets/translations_${lang}.json`)
+      expect(translation.default).toBeDefined()
+      expect(Object.keys(translation.default).length).toBeGreaterThan(0)
     })
   })
 

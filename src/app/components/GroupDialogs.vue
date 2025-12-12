@@ -74,6 +74,3 @@ import BModal from "@/components/BModal.vue";
 
 const message = "Error message box body."
 </script>
-
-<style scoped>
-</style>

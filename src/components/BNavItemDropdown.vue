@@ -33,6 +33,3 @@ export default {
   name: 'BNavItemDropdown'
 }
 </script>
-
-<style scoped>
-</style>
