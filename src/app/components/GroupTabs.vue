@@ -33,6 +33,3 @@
 import BTab from "@/components/BTab.vue";
 import BTabs from "@/components/BTabs.vue";
 </script>
-
-<style scoped>
-</style>

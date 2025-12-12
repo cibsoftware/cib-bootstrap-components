@@ -34,6 +34,3 @@ export default {
   name: 'BNavbarToggle'
 }
 </script>
-
-<style scoped>
-</style>

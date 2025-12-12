@@ -39,6 +39,3 @@ const toggleVisibility = () => {
   visibilityValue.value = !visibilityValue.value;
 };
 </script>
-
-<style scoped>
-</style>

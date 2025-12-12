@@ -116,6 +116,3 @@ import BFormSelectOption from "@/components/BFormSelectOption.vue";
 import BFormTextarea from "@/components/BFormTextarea.vue";
 import BFormTimepicker from "@/components/BFormTimepicker.vue";
 </script>
-
-<style scoped>
-</style>

@@ -42,6 +42,3 @@ import GroupProgress from './GroupProgress.vue'
 import GroupWaitingBox from './GroupWaitingBox.vue'
 import GroupForm from './GroupForm.vue'
 </script>
-
-<style scoped>
-</style>
