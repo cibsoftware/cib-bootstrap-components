@@ -18,13 +18,15 @@
 -->
 <template>
   <div :class="customClass">
-    <nav>
-      <div class="nav nav-tabs" role="tablist">
-        <button v-for="(tab) in tabs" :key="tab.id"
+    <nav aria-label="Tabs">
+      <div class="nav nav-tabs" role="tablist" @keydown="handleKeydown">
+        <button v-for="(tab, index) in tabs" :key="tab.id"
           class="nav-link" :class="[titleLinkClass, { active: activeTab === tab.id }]"
           :id="'nav-' + tab.id + '-tab'"
+          :ref="'tab-' + index"
           data-bs-toggle="tab" :data-bs-target="'#nav-' + tab.id"
           type="button" role="tab"
+          :tabindex="activeTab === tab.id ? 0 : -1"
           :aria-controls="'nav-' + tab.id" :aria-selected="activeTab === tab.id"
           @click="selectTab(tab.id)">
           {{ tab.title }}
@@ -82,6 +84,41 @@ export default {
     },
     notifyTabClick: function (tabId) {
       this.tabClickHandlers.forEach(callback => callback(tabId))
+    },
+    handleKeydown: function (event) {
+      const currentIndex = this.tabs.findIndex(tab => tab.id === this.activeTab)
+      let nextIndex = currentIndex
+
+      switch (event.key) {
+        case 'ArrowLeft':
+          event.preventDefault()
+          nextIndex = currentIndex > 0 ? currentIndex - 1 : this.tabs.length - 1
+          break
+        case 'ArrowRight':
+          event.preventDefault()
+          nextIndex = currentIndex < this.tabs.length - 1 ? currentIndex + 1 : 0
+          break
+        case 'Home':
+          event.preventDefault()
+          nextIndex = 0
+          break
+        case 'End':
+          event.preventDefault()
+          nextIndex = this.tabs.length - 1
+          break
+        default:
+          return
+      }
+
+      if (nextIndex !== currentIndex && this.tabs[nextIndex]) {
+        this.selectTab(this.tabs[nextIndex].id)
+        this.$nextTick(() => {
+          const tabRef = this.$refs['tab-' + nextIndex]
+          if (tabRef && tabRef[0]) {
+            tabRef[0].focus()
+          }
+        })
+      }
     }
   },
   provide() {
