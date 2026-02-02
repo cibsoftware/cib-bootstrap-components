@@ -19,7 +19,7 @@
 <template>
   <div :class="dropright ? 'dropend' : 'dropdown'" ref="dropdownContainer">
     <button class="btn" :class="classes" type="button" ref="toggleButton"
-    aria-haspopup="true" :aria-expanded="isOpen.toString()" @click="toggle">
+    aria-haspopup="true" :aria-expanded="isOpen.toString()" :aria-label="ariaLabel" @click="toggle">
       <slot name="button-content">{{ title }}</slot>
     </button>
     <ul class="dropdown-menu" :class="{ 'dropdown-menu-end': right }" role="menu" @click.stop>
@@ -39,7 +39,11 @@ export default {
     toggleClass: String,
     right: Boolean,
     dropright: Boolean,
-    noCaret: Boolean
+    noCaret: Boolean,
+    ariaLabel: {
+      type: String,
+      default: null
+    }
   },
   computed: {
     classes: function () {
@@ -59,9 +63,11 @@ export default {
   mounted: function () {
     this.dropdownInstance = new Bootstrap.Dropdown(this.$refs.toggleButton)
     document.addEventListener('click', this.handleDocumentClick)
+    document.addEventListener('keydown', this.handleKeydown)
   },
   beforeUnmount: function () {
     document.removeEventListener('click', this.handleDocumentClick)
+    document.removeEventListener('keydown', this.handleKeydown)
   },
   methods: {
     show: function () {
@@ -93,6 +99,16 @@ export default {
         return
       }
       this.hide()
+    },
+    handleKeydown: function (event) {
+      if (event.key === 'Escape' && this.isOpen) {
+        event.preventDefault()
+        this.hide()
+        // Return focus to toggle button
+        if (this.$refs.toggleButton) {
+          this.$refs.toggleButton.focus()
+        }
+      }
     }
   }
 }

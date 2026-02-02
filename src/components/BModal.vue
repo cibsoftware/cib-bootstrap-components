@@ -66,7 +66,7 @@ export default {
   mounted: function () {
     this.modal = new Bootstrap.Modal(this.$refs.modal, {
       backdrop: 'static',
-      keyboard: false
+      keyboard: true
     })
 
     if (this.$refs.modal.parentNode !== document.body) {
