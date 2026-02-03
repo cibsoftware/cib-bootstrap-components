@@ -19,7 +19,7 @@
 <template>
   <div :class="dropright ? 'dropend' : 'dropdown'" ref="dropdownContainer">
     <button class="btn" :class="classes" type="button" ref="toggleButton"
-    aria-haspopup="true" :aria-expanded="isOpen.toString()" :aria-label="ariaLabel" @click="toggle">
+    aria-haspopup="true" :aria-expanded="isOpen.toString()" :aria-label="label" @click="toggle">
       <slot name="button-content">{{ title }}</slot>
     </button>
     <ul class="dropdown-menu" :class="{ 'dropdown-menu-end': right }" role="menu" @click.stop>
@@ -40,7 +40,7 @@ export default {
     right: Boolean,
     dropright: Boolean,
     noCaret: Boolean,
-    ariaLabel: {
+    label: {
       type: String,
       default: null
     }

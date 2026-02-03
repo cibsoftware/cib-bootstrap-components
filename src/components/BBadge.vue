@@ -21,7 +21,7 @@
     :class="['badge', variantClass, pillClass]"
     :style="customStyle"
     role="status"
-    :aria-label="ariaLabel">
+    :aria-label="label">
     <slot></slot>
   </span>
 </template>
@@ -42,7 +42,7 @@ export default {
       type: [String, Object],
       default: ''
     },
-    ariaLabel: {
+    label: {
       type: String,
       default: ''
     }

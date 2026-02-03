@@ -17,7 +17,7 @@
 
 -->
 <template>
-  <form :class="['b-dropdown-form', formClass]" @submit.prevent="onSubmit" :aria-label="ariaLabel">
+  <form :class="['b-dropdown-form', formClass]" @submit.prevent="onSubmit" :aria-label="label">
     <slot></slot>
   </form>
 </template>
@@ -30,7 +30,7 @@ export default {
       type: String,
       default: ''
     },
-    ariaLabel: {
+    label: {
       type: String,
       default: ''
     }

@@ -21,7 +21,7 @@
     <textarea ref="textarea" :id="id" :class="['form-control', textareaClass]"
       :placeholder="placeholder" :rows="parsedRows" :style="{ resize: resizeStyle }"
       :aria-describedby="ariaDescribedby"
-      :aria-label="ariaLabel"
+      :aria-label="label"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       @blur="handleBlur"
@@ -42,7 +42,7 @@ export default {
     textareaClass: { type: String, default: '' },
     wrapperClass: { type: String, default: '' },
     ariaDescribedby: { type: String, default: null },
-    ariaLabel: { type: String, default: null },
+    label: { type: String, default: null },
     noResize: { type: Boolean, default: false }
   },
   computed: {
