@@ -25,7 +25,6 @@
     :href="computedHref"
     :to="isRouterLink ? to : null"
     :role="tag === 'button' ? 'button' : null"
-    :aria-label="label"
     :aria-disabled="disabled ? 'true' : null"
     :disabled="disabled && tag === 'button'">
       <slot></slot>
@@ -41,8 +40,7 @@ export default {
     href: { type: String, default: null },
     to: { type: [String, Object], default: null },
     size: { type: String, default: null },
-    disabled: { type: Boolean, default: false },
-    label: { type: String, default: null }
+    disabled: { type: Boolean, default: false }
   },
   computed: {
     tag: function () {

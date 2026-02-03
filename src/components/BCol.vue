@@ -19,8 +19,7 @@
 <template>
   <div
     :class="colClasses"
-    :role="role"
-    :aria-label="label">
+    :role="role">
     <slot></slot>
   </div>
 </template>
@@ -46,10 +45,6 @@ export default {
       default: null
     },
     role: {
-      type: String,
-      default: null
-    },
-    label: {
       type: String,
       default: null
     }

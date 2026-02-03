@@ -20,8 +20,7 @@
   <span
     :class="['badge', variantClass, pillClass]"
     :style="customStyle"
-    role="status"
-    :aria-label="label">
+    role="status">
     <slot></slot>
   </span>
 </template>
@@ -40,10 +39,6 @@ export default {
     },
     customStyle: {
       type: [String, Object],
-      default: ''
-    },
-    label: {
-      type: String,
       default: ''
     }
   },

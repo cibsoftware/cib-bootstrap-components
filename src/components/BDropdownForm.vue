@@ -17,7 +17,7 @@
 
 -->
 <template>
-  <form :class="['b-dropdown-form', formClass]" @submit.prevent="onSubmit" :aria-label="label">
+  <form :class="['b-dropdown-form', formClass]" @submit.prevent="onSubmit">
     <slot></slot>
   </form>
 </template>
@@ -27,10 +27,6 @@ export default {
   name: 'BDropdownForm',
   props: {
     formClass: {
-      type: String,
-      default: ''
-    },
-    label: {
       type: String,
       default: ''
     }
