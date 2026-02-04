@@ -76,7 +76,10 @@ export default {
     this.$refs.modal.addEventListener('show.bs.modal', () => { this.$emit('show') })
     this.$refs.modal.addEventListener('shown.bs.modal', () => this.$emit('shown'))
     this.$refs.modal.addEventListener('hide.bs.modal', () => { this.$emit('hide') })
-    this.$refs.modal.addEventListener('hidden.bs.modal', () => this.$emit('hidden'))
+    this.$refs.modal.addEventListener('hidden.bs.modal', () => {
+      this.$emit('hidden')
+      this.restoreFocus()
+    })
     this.$refs.modal.addEventListener('hidePrevented.bs.modal', () => this.hide('close'))
   },
   computed: {
@@ -102,9 +105,14 @@ export default {
     hide: function (trigger) {
       this.modal.hide()
       this.$emit('hide', trigger)
-      if (this.lastFocused && typeof this.lastFocused.focus === 'function') {
-        this.lastFocused.focus();
-      }
+    },
+    restoreFocus: function () {
+      this.$nextTick(() => {
+        if (this.lastFocused && typeof this.lastFocused.focus === 'function' && document.body.contains(this.lastFocused)) {
+          this.lastFocused.focus()
+        }
+        this.lastFocused = null
+      })
     },
     show: function () {
       this.lastFocused = document.activeElement
