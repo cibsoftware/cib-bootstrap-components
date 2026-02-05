@@ -44,16 +44,19 @@ export default {
   },
   computed: {
     tag: function () {
-      return this.href ? 'a' : (this.to ? 'router-link' : 'button')
+      if (this.href) {
+        return 'a'
+      }
+      return this.to ? 'router-link' : 'button'
     },
     classes: function () {
       const res = []
-      res.push('btn-' + this.variant)
+      res.push(`btn-${this.variant}`)
       if (this.block) res.push('w-100')
       return res
     },
     sizeClass: function () {
-      return this.size === 'sm' ? 'btn-sm' : this.size === 'lg' ? 'btn-lg' : ''
+      return ['sm', 'lg'].includes(this.size) ? `btn-${this.size}` : ''
     },
     computedHref: function () {
       return this.href ? this.href : null

@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     sizeClass: function () {
-      return this.size === 'sm' ? 'input-group-sm' : this.size === 'lg' ? 'input-group-lg' : ''
+      return ['sm', 'lg'].includes(this.size) ? `input-group-${this.size}` : ''
     },
     hasDefaultSlot: function () {
       return !!this.$slots.default
