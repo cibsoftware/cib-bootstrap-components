@@ -18,7 +18,7 @@
 -->
 <template>
   <div class="card">
-    <h5 v-if="title" class="card-title" :aria-level="headingLevel" role="heading">{{ title }}</h5>
+    <h5 v-if="title" class="card-title" :aria-level="headingLevel">{{ title }}</h5>
     <slot></slot>
   </div>
 </template>

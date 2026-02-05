@@ -21,7 +21,6 @@
     :class="formClasses"
     @submit="handleSubmit"
     :novalidate="novalidate"
-    role="form"
     :aria-describedby="ariaDescribedby">
     <slot></slot>
   </form>

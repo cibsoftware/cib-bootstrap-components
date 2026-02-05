@@ -17,7 +17,7 @@
 
 -->
 <template>
-  <ul class="list-group" role="list" @click="$emit('click', $event)">
+  <ul class="list-group" @click="$emit('click', $event)">
     <slot></slot>
   </ul>
 </template>

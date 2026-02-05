@@ -17,7 +17,7 @@
 
 -->
 <template>
-  <hr class="dropdown-divider" role="separator">
+  <hr class="dropdown-divider">
 </template>
 
 <script>
