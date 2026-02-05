@@ -215,7 +215,9 @@ export default {
     },
     parseToDate: function (value) {
       if (!value) return null
-      return typeof value === 'string' ? new Date(value) : value instanceof Date ? value : null
+      if (value instanceof Date) return value
+      if (typeof value === 'string') return new Date(value)
+      return null
     },
     formatDateForAccessibility: function (date) {
       return date.toLocaleDateString(this.$i18n.locale, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })

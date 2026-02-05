@@ -51,7 +51,7 @@ export default {
       return ['vertical', 'horizontal', 'both', 'none'].includes(this.resize) ? this.resize : 'vertical'
     },
     parsedRows: function () {
-      return typeof this.rows === 'string' ? parseInt(this.rows, 10) : this.rows
+      return typeof this.rows === 'string' ? Number.parseInt(this.rows, 10) : this.rows
     }
   },
   methods: {

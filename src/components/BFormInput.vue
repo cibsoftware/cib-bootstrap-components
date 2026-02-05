@@ -72,7 +72,7 @@ export default {
   },
   computed: {
     sizeClass: function () {
-      return this.size === 'sm' ? 'form-control-sm' : this.size === 'lg' ? 'form-control-lg' : ''
+      return ['sm', 'lg'].includes(this.size) ? `form-control-${this.size}` : ''
     },
     validationClass: function () {
       if (this.state === true) return 'is-valid'

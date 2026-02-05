@@ -30,7 +30,7 @@ function nameToImportPath(vueFiles, name) {
   if (!pathName) {
     throw new Error(`Component ${name} not found in vueFiles`)
   }
-  const relPathName = pathName.substring(pathName.indexOf('src/') + 4).replace(/\\/g, '/')
+  const relPathName = pathName.substring(pathName.indexOf('src/') + 4).replaceAll('\\', '/')
   return './' + relPathName
 }
 
@@ -81,7 +81,7 @@ describe('library.js', () => {
           return
         }
         if (!isSetupScript) {
-          const namePattern = new RegExp(`name:\\s*['"]${fileName}['"]`)
+          const namePattern = new RegExp(String.raw`name:\s*['"]${fileName}['"],`)
           expect(content).toMatch(namePattern, `File ${file} does not contain name: '${fileName}'`)
         }
       })

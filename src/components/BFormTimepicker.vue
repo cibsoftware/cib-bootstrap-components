@@ -82,16 +82,16 @@ export default {
       return this.modelValue === null ? '' : `${this.paddedHour}:${this.paddedMinute}`
     },
     paddedHour: function () {
-      return this.hour !== null ? String(this.hour).padStart(2, '0') : '--'
+      return this.hour === null ? '--' : String(this.hour).padStart(2, '0')
     },
     paddedMinute: function () {
-      return this.minute !== null ? String(this.minute).padStart(2, '0') : '--'
+      return this.minute === null ? '--' : String(this.minute).padStart(2, '0')
     },
     displayHour: function () {
-      return this.hour !== null ? this.paddedHour : '--'
+      return this.hour === null ? '--' : this.paddedHour
     },
     displayMinute: function () {
-      return this.minute !== null ? this.paddedMinute : '--'
+      return this.minute === null ? '--' : this.paddedMinute
     },
     inputClassComputed: function () {
       return [this.inputClass, this.size ? `form-control-${this.size}` : '']

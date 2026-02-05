@@ -84,9 +84,7 @@ export default {
   },
   computed: {
     sizeClass: function () {
-      return this.size === 'xl' ? 'modal-xl' :
-        this.size === 'lg' ? 'modal-lg' :
-          this.size === 'sm' ? 'modal-sm' : ''
+      return ['sm', 'lg', 'xl'].includes(this.size) ? `modal-${this.size}` : ''
     },
     modalClasses() {
       return [

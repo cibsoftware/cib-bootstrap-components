@@ -58,7 +58,10 @@ export default {
       return this.button
     },
     itemTag: function () {
-      return this.isLink ? 'a' : this.isButton ? 'button' : 'li'
+      if (this.isLink) {
+        return 'a'
+      }
+      return this.isButton ? 'button' : 'li'
     }
   },
   methods: {
@@ -71,7 +74,7 @@ export default {
         if (this.to) {
           this.$router.push(this.to)
         } else if (this.href) {
-          window.location.href = this.href
+          globalThis.location.href = this.href
         }
       }
     }
