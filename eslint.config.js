@@ -18,6 +18,7 @@ import js from '@eslint/js'
 import pluginVue from 'eslint-plugin-vue'
 import pluginVitest from '@vitest/eslint-plugin'
 import pluginCypress from 'eslint-plugin-cypress/flat'
+import pluginVueA11y from "eslint-plugin-vuejs-accessibility";
 
 export default [
   {
@@ -36,6 +37,20 @@ export default [
   {
     ...pluginVitest.configs.recommended,
     files: ['src/**/__tests__/*'],
+  },
+
+  ...pluginVueA11y.configs["flat/recommended"],
+  {
+    rules: {
+      "vuejs-accessibility/label-has-for": [
+        "error",
+        {
+          "required": {
+            "every": ["id"]
+          },
+        }
+      ],
+    }
   },
 
   {
