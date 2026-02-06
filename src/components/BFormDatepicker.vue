@@ -18,10 +18,10 @@
 -->
 <template>
   <div class="datepicker-container position-relative flex-fill" @click.stop role="group" aria-labelledby="datepicker-label">
-  <label id="datepicker-label" class="visually-hidden">{{ $t('bcomponents.datepicker.label') }}</label>
+  <label id="datepicker-label" class="visually-hidden" for="date-selected">{{ $t('bcomponents.datepicker.label') }}</label>
   <div class="input-group" :class="inputGroupClassComputed">
     <slot name="prepend"></slot>
-    <input type="text" :value="formattedDate" class="form-control" :class="inputClassComputed"
+    <input id="date-selected" type="text" :value="formattedDate" class="form-control" :class="inputClassComputed"
       @focus="openPicker" readonly :aria-label="$t('bcomponents.datepicker.selectedDate')"
       :placeholder="formattedDate === '' ? $t('bcomponents.datepicker.noDate') : ''" />
     <slot name="append"></slot>
