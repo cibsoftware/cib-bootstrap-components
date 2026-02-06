@@ -108,11 +108,78 @@ export default {
     },
     restoreFocus: function () {
       this.$nextTick(() => {
-        if (this.lastFocused && typeof this.lastFocused.focus === 'function' && document.body.contains(this.lastFocused)) {
-          this.lastFocused.focus()
+        if (this.lastFocused && typeof this.lastFocused.focus === 'function') {
+          // Check if the original element still exists AND is visible/focusable
+          if (document.body.contains(this.lastFocused) && this.isElementVisible(this.lastFocused)) {
+            this.lastFocused.focus()
+          } else {
+            // Otherwise, find the closest focusable ancestor or related element
+            const fallbackElement = this.findFocusableFallback(this.lastFocused)
+            if (fallbackElement) {
+              fallbackElement.focus()
+            }
+          }
         }
         this.lastFocused = null
       })
+    },
+    isElementVisible: function (element) {
+      // Check if element or any parent is hidden
+      if (!element.offsetParent && element !== document.body) {
+        return false
+      }
+      
+      // Check if element is inside a collapsed/hidden dropdown menu
+      const dropdownMenu = element.closest('.dropdown-menu')
+      if (dropdownMenu) {
+        const isShown = dropdownMenu.classList.contains('show')
+        if (!isShown) {
+          return false
+        }
+      }
+      
+      // Check if element is inside a collapsed navbar
+      const navbarCollapse = element.closest('.navbar-collapse')
+      if (navbarCollapse) {
+        const isShown = navbarCollapse.classList.contains('show')
+        if (!isShown) {
+          return false
+        }
+      }
+      
+      return true
+    },
+    findFocusableFallback: function (element) {
+      // Check if element was inside a dropdown menu
+      const dropdownItem = element.closest('.dropdown-item')
+      if (dropdownItem) {
+        // Find the dropdown toggle button
+        const dropdown = dropdownItem.closest('.dropdown')
+        if (dropdown) {
+          const toggle = dropdown.querySelector('[data-bs-toggle="dropdown"]')
+          if (toggle && document.body.contains(toggle)) {
+            return toggle
+          }
+        }
+      }
+      
+      // General fallback: traverse up looking for a focusable parent that still exists
+      let parent = element.parentElement
+      while (parent && parent !== document.body) {
+        if (document.body.contains(parent) && this.isElementVisible(parent)) {
+          // Check if parent is focusable
+          if (parent.tabIndex >= 0 || parent.tagName === 'BUTTON' || parent.tagName === 'A') {
+            return parent
+          }
+          // Keep looking up
+          parent = parent.parentElement
+        } else {
+          // Parent is also removed, try its parent
+          parent = parent.parentElement
+        }
+      }
+      
+      return null
     },
     show: function () {
       this.lastFocused = document.activeElement
