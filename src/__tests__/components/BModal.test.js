@@ -21,7 +21,7 @@ import { BModal } from '@/library'
 
 describe('BModal', () => {
   let wrapper
-  
+
   beforeEach(() => {
     // Setup DOM environment
     document.body.innerHTML = ''
@@ -75,34 +75,27 @@ describe('BModal', () => {
 
       // Verify restoreFocus was called
       expect(restoreFocusSpy).toHaveBeenCalled()
-      
+
       // Verify focus was restored
       expect(document.activeElement).toBe(button)
     })
 
     it('should handle when original element is removed from DOM', async () => {
       // Create a dropdown structure
-      const dropdown = document.createElement('div')
-      dropdown.className = 'dropdown'
-      
-      const toggleButton = document.createElement('button')
-      toggleButton.setAttribute('data-bs-toggle', 'dropdown')
-      toggleButton.id = 'dropdown-toggle'
-      toggleButton.tabIndex = 0
-      
-      const menu = document.createElement('div')
-      menu.className = 'dropdown-menu'
-      
-      const menuItem = document.createElement('a')
-      menuItem.className = 'dropdown-item'
-      menuItem.id = 'menu-item'
-      menuItem.href = '#'
-      menuItem.tabIndex = 0
-      
-      menu.appendChild(menuItem)
-      dropdown.appendChild(toggleButton)
-      dropdown.appendChild(menu)
-      document.body.appendChild(dropdown)
+      const container = document.createElement('div')
+      container.innerHTML = `
+        <div class="dropdown">
+          <button data-bs-toggle="dropdown" id="dropdown-toggle" tabindex="0"></button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" id="menu-item" href="#" tabindex="0"></a>
+          </div>
+        </div>
+      `
+      document.body.appendChild(container.firstElementChild)
+
+      const toggleButton = document.getElementById('dropdown-toggle')
+      const menu = document.querySelector('.dropdown-menu')
+      const menuItem = document.getElementById('menu-item')
 
       // Mount modal
       wrapper = mount(BModal, {
@@ -118,17 +111,14 @@ describe('BModal', () => {
 
       // Manually set lastFocused to the menuItem (simulating what show() does)
       wrapper.vm.lastFocused = menuItem
-      
-      // Spy on the focus methods BEFORE removing the menu
-      const toggleButtonFocusSpy = vi.spyOn(toggleButton, 'focus')
-      
+
       // Verify that findFocusableFallback can find the toggle BEFORE removal
       const fallbackBeforeRemoval = wrapper.vm.findFocusableFallback(menuItem)
       expect(fallbackBeforeRemoval).toBe(toggleButton)
 
       // Simulate menu closing by removing the menu
       menu.remove()
-      
+
       // Verify menuItem is no longer in the document
       expect(document.body.contains(menuItem)).toBe(false)
 
@@ -146,27 +136,19 @@ describe('BModal', () => {
 
     it('should handle when element is hidden but still in DOM', async () => {
       // Create a dropdown menu item
-      const dropdown = document.createElement('div')
-      dropdown.className = 'dropdown'
-      
-      const toggleButton = document.createElement('button')
-      toggleButton.setAttribute('data-bs-toggle', 'dropdown')
-      toggleButton.id = 'dropdown-toggle'
-      toggleButton.tabIndex = 0
-      
-      const menu = document.createElement('div')
-      menu.className = 'dropdown-menu' // No 'show' class - menu is hidden
-      
-      const menuItem = document.createElement('a')
-      menuItem.className = 'dropdown-item'
-      menuItem.id = 'menu-item'
-      menuItem.href = '#'
-      menuItem.tabIndex = 0
-      
-      menu.appendChild(menuItem)
-      dropdown.appendChild(toggleButton)
-      dropdown.appendChild(menu)
-      document.body.appendChild(dropdown)
+      const container = document.createElement('div')
+      container.innerHTML = `
+        <div class="dropdown">
+          <button data-bs-toggle="dropdown" id="dropdown-toggle" tabindex="0"></button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" id="menu-item" href="#" tabindex="0"></a>
+          </div>
+        </div>
+      `
+      document.body.appendChild(container.firstElementChild)
+
+      const toggleButton = document.getElementById('dropdown-toggle')
+      const menuItem = document.getElementById('menu-item')
 
       // Mount modal
       wrapper = mount(BModal, {
@@ -182,7 +164,7 @@ describe('BModal', () => {
 
       // Manually set lastFocused to the menuItem (simulating what show() does)
       wrapper.vm.lastFocused = menuItem
-      
+
       // Spy on the focus methods to verify they're called
       const menuItemFocusSpy = vi.spyOn(menuItem, 'focus')
       const toggleButtonFocusSpy = vi.spyOn(toggleButton, 'focus')
@@ -238,52 +220,59 @@ describe('BModal', () => {
       element.style.display = 'block'
       element.style.position = 'relative'
       document.body.appendChild(element)
-      
+
       // Mock offsetParent since it's often null in test environments
       Object.defineProperty(element, 'offsetParent', {
         get: () => document.body,
         configurable: true
       })
-      
+
       expect(wrapper.vm.isElementVisible(element)).toBe(true)
     })
 
     it('should return false for hidden dropdown menu items', () => {
-      const menu = document.createElement('div')
-      menu.className = 'dropdown-menu' // No 'show' class
-      
-      const item = document.createElement('a')
-      menu.appendChild(item)
-      document.body.appendChild(menu)
-      
+      const container = document.createElement('div')
+      container.innerHTML = `
+        <div class="dropdown-menu">
+          <a></a>
+        </div>
+      `
+      document.body.appendChild(container.firstElementChild)
+      const item = document.querySelector('.dropdown-menu a')
+
       expect(wrapper.vm.isElementVisible(item)).toBe(false)
     })
 
     it('should return true for shown dropdown menu items', () => {
-      const menu = document.createElement('div')
-      menu.className = 'dropdown-menu show'
-      
-      const item = document.createElement('a')
-      menu.appendChild(item)
-      document.body.appendChild(menu)
-      
+      const container = document.createElement('div')
+      container.innerHTML = `
+        <div class="dropdown-menu show">
+          <a></a>
+        </div>
+      `
+      document.body.appendChild(container.firstElementChild)
+      const menu = document.querySelector('.dropdown-menu')
+      const item = document.querySelector('.dropdown-menu a')
+
       // Mock offsetParent since it's often null in test environments
       Object.defineProperty(item, 'offsetParent', {
         get: () => menu,
         configurable: true
       })
-      
+
       expect(wrapper.vm.isElementVisible(item)).toBe(true)
     })
 
     it('should return false for collapsed navbar items', () => {
-      const navbar = document.createElement('div')
-      navbar.className = 'navbar-collapse' // No 'show' class
-      
-      const item = document.createElement('a')
-      navbar.appendChild(item)
-      document.body.appendChild(navbar)
-      
+      const container = document.createElement('div')
+      container.innerHTML = `
+        <div class="navbar-collapse">
+          <a></a>
+        </div>
+      `
+      document.body.appendChild(container.firstElementChild)
+      const item = document.querySelector('.navbar-collapse a')
+
       expect(wrapper.vm.isElementVisible(item)).toBe(false)
     })
   })
@@ -301,23 +290,20 @@ describe('BModal', () => {
     })
 
     it('should find dropdown toggle for dropdown items', () => {
-      const dropdown = document.createElement('div')
-      dropdown.className = 'dropdown'
-      
-      const toggle = document.createElement('button')
-      toggle.setAttribute('data-bs-toggle', 'dropdown')
-      
-      const menu = document.createElement('div')
-      menu.className = 'dropdown-menu'
-      
-      const item = document.createElement('a')
-      item.className = 'dropdown-item'
-      
-      menu.appendChild(item)
-      dropdown.appendChild(toggle)
-      dropdown.appendChild(menu)
-      document.body.appendChild(dropdown)
-      
+      const container = document.createElement('div')
+      container.innerHTML = `
+        <div class="dropdown">
+          <button data-bs-toggle="dropdown"></button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item"></a>
+          </div>
+        </div>
+      `
+      document.body.appendChild(container.firstElementChild)
+
+      const toggle = document.querySelector('[data-bs-toggle="dropdown"]')
+      const item = document.querySelector('.dropdown-item')
+
       const fallback = wrapper.vm.findFocusableFallback(item)
       expect(fallback).toBe(toggle)
     })
@@ -325,7 +311,7 @@ describe('BModal', () => {
     it('should return null if no fallback found', () => {
       const element = document.createElement('div')
       document.body.appendChild(element)
-      
+
       const fallback = wrapper.vm.findFocusableFallback(element)
       expect(fallback).toBeNull()
     })
@@ -333,11 +319,11 @@ describe('BModal', () => {
     it('should return null for elements not in dropdowns', () => {
       const parent = document.createElement('div')
       parent.tabIndex = 0
-      
+
       const child = document.createElement('span')
       parent.appendChild(child)
       document.body.appendChild(parent)
-      
+
       // findFocusableFallback specifically looks for dropdown toggles
       // It doesn't find generic focusable parents
       const fallback = wrapper.vm.findFocusableFallback(child)
