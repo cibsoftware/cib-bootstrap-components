@@ -24,6 +24,7 @@
       <RouterLink to="/lists">Lists</RouterLink>
       <RouterLink to="/tabs">Tabs</RouterLink>
       <RouterLink to="/dialogs">Dialogs</RouterLink>
+      <RouterLink to="/datepickers">Datepickers</RouterLink>
       <RouterLink to="/avatars">Avatars</RouterLink>
       <RouterLink to="/alerts">Alerts</RouterLink>
       <RouterLink to="/progress">Progress</RouterLink>

@@ -50,6 +50,11 @@ const router = createRouter({
       component: () => import('../components/GroupDialogs.vue'),
     },
     {
+      path: '/datepickers',
+      name: 'Datepickers',
+      component: () => import('../components/GroupDatepickers.vue'),
+    },
+    {
       path: '/alerts',
       name: 'Alerts',
       component: () => import('../components/GroupAlerts.vue'),
