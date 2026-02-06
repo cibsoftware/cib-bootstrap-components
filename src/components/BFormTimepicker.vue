@@ -18,10 +18,10 @@
 -->
 <template>
   <div class="timepicker-container position-relative" @click.stop role="group" aria-labelledby="timepicker-label">
-    <label id="timepicker-label" class="visually-hidden">{{ $t('bcomponents.timepicker.label') }}</label>
+    <label id="timepicker-label" for="time-selected" class="visually-hidden">{{ $t('bcomponents.timepicker.label') }}</label>
     <div class="input-group" :class="inputGroupClassComputed">
       <slot name="prepend"></slot>
-      <input type="text" :value="formattedTime" @focus="openPicker" class="form-control" :class="inputClassComputed"
+      <input type="text" id="time-selected" :value="formattedTime" @focus="openPicker" class="form-control" :class="inputClassComputed"
         readonly :aria-label="$t('bcomponents.timepicker.selectedTime')" :placeholder="placeholderText"/>
       <slot name="append"></slot>
     </div>
