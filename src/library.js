@@ -71,7 +71,7 @@ import BTabs from './components/BTabs.vue'
 import BToggle from './components/BToggle.vue'
 import BWaitingBox from './components/BWaitingBox.vue'
 
-const registerComponents = function(app) {
+export function registerComponents(app) {
 
   app.component('b-alert', BAlert)
   app.component('b-avatar', BAvatar)
@@ -139,68 +139,63 @@ import it from '@/assets/translations_it.json'
 import ru from '@/assets/translations_ru.json'
 import ua from '@/assets/translations_ua.json'
 
-const mergeLocaleMessage = function(i18n, lang) {
+export function mergeLocaleMessage(i18n, lang) {
   const translations = { en, de, es, it, ru, ua }
   const messages = translations[lang] || en
   i18n.global.mergeLocaleMessage(lang, messages)
 }
 
-export {
-  registerComponents,
-  mergeLocaleMessage,
-
-  BAlert,
-  BAvatar,
-  BBadge,
-  BButton,
-  BButtonClose,
-  BCalendar,
-  BCard,
-  BCardBody,
-  BCardText,
-  BCol,
-  BCollapse,
-  BDPopover,
-  BDdItemBtn,
-  BDropdown,
-  BDropdownDivider,
-  BDropdownForm,
-  BDropdownGroup,
-  BDropdownItem,
-  BDropdownItemButton,
-  BForm,
-  BFormCheckbox,
-  BFormDatepicker,
-  BFormFile,
-  BFormGroup,
-  BFormInput,
-  BFormRow,
-  BFormSelect,
-  BFormSelectOption,
-  BFormTag,
-  BFormTextarea,
-  BFormTimepicker,
-  BInputGroup,
-  BInputGroupAppend,
-  BInputGroupPrepend,
-  BInputGroupText,
-  BLink,
-  BListGroup,
-  BListGroupItem,
-  BModal,
-  BNavItemDropdown,
-  BNavbar,
-  BNavbarBrand,
-  BNavbarNav,
-  BNavbarToggle,
-  BOverlay,
-  BPagination,
-  BPopover,
-  BProgress,
-  BProgressBar,
-  BSpinner,
-  BTab,
-  BTabs,
-  BToggle,
-  BWaitingBox
-}
+export { default as BAlert } from './components/BAlert.vue'
+export { default as BAvatar } from './components/BAvatar.vue'
+export { default as BBadge } from './components/BBadge.vue'
+export { default as BButton } from './components/BButton.vue'
+export { default as BButtonClose } from './components/BButtonClose.vue'
+export { default as BCalendar } from './components/BCalendar.vue'
+export { default as BCard } from './components/BCard.vue'
+export { default as BCardBody } from './components/BCardBody.vue'
+export { default as BCardText } from './components/BCardText.vue'
+export { default as BCol } from './components/BCol.vue'
+export { default as BCollapse } from './components/BCollapse.vue'
+export { default as BDdItemBtn } from './components/BDdItemBtn.vue'
+export { default as BDPopover } from './components/BDPopover.vue'
+export { default as BDropdown } from './components/BDropdown.vue'
+export { default as BDropdownDivider } from './components/BDropdownDivider.vue'
+export { default as BDropdownForm } from './components/BDropdownForm.vue'
+export { default as BDropdownGroup } from './components/BDropdownGroup.vue'
+export { default as BDropdownItem } from './components/BDropdownItem.vue'
+export { default as BDropdownItemButton } from './components/BDropdownItemButton.vue'
+export { default as BForm } from './components/BForm.vue'
+export { default as BFormCheckbox } from './components/BFormCheckbox.vue'
+export { default as BFormDatepicker } from './components/BFormDatepicker.vue'
+export { default as BFormFile } from './components/BFormFile.vue'
+export { default as BFormGroup } from './components/BFormGroup.vue'
+export { default as BFormInput } from './components/BFormInput.vue'
+export { default as BFormRow } from './components/BFormRow.vue'
+export { default as BFormSelect } from './components/BFormSelect.vue'
+export { default as BFormSelectOption } from './components/BFormSelectOption.vue'
+export { default as BFormTag } from './components/BFormTag.vue'
+export { default as BFormTextarea } from './components/BFormTextarea.vue'
+export { default as BFormTimepicker } from './components/BFormTimepicker.vue'
+export { default as BInputGroup } from './components/BInputGroup.vue'
+export { default as BInputGroupAppend } from './components/BInputGroupAppend.vue'
+export { default as BInputGroupPrepend } from './components/BInputGroupPrepend.vue'
+export { default as BInputGroupText } from './components/BInputGroupText.vue'
+export { default as BLink } from './components/BLink.vue'
+export { default as BListGroup } from './components/BListGroup.vue'
+export { default as BListGroupItem } from './components/BListGroupItem.vue'
+export { default as BModal } from './components/BModal.vue'
+export { default as BNavItemDropdown } from './components/BNavItemDropdown.vue'
+export { default as BNavbar } from './components/BNavbar.vue'
+export { default as BNavbarBrand } from './components/BNavbarBrand.vue'
+export { default as BNavbarNav } from './components/BNavbarNav.vue'
+export { default as BNavbarToggle } from './components/BNavbarToggle.vue'
+export { default as BOverlay } from './components/BOverlay.vue'
+export { default as BPagination } from './components/BPagination.vue'
+export { default as BPopover } from './components/BPopover.vue'
+export { default as BProgress } from './components/BProgress.vue'
+export { default as BProgressBar } from './components/BProgressBar.vue'
+export { default as BSpinner } from './components/BSpinner.vue'
+export { default as BTab } from './components/BTab.vue'
+export { default as BTabs } from './components/BTabs.vue'
+export { default as BToggle } from './components/BToggle.vue'
+export { default as BWaitingBox } from './components/BWaitingBox.vue'
