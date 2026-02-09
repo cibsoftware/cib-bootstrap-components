@@ -35,7 +35,7 @@
     &nbsp;
 
     <button @click="$refs.error.show()">Show Error dialog</button>
-    <BModal ref="error" :title="$t('error.title')" :ok-title="$t('error.ok')" :ok-only="true">
+    <BModal ref="error" title="My Title" ok-title="OK" :ok-only="true">
       <div class="container-fluid">
       <div class="d-flex align-items-center">
         <div class="me-4">
@@ -52,7 +52,7 @@
     &nbsp;
 
     <button @click="$refs.error2.show()">With OK and CANCEL</button>
-    <BModal ref="error2" :title="$t('error.title')" :ok-title="$t('error.ok')" :ok-only="false">
+    <BModal ref="error2" title="My Title" ok-title="OK" :ok-only="false">
       <div class="container-fluid">
       <div class="d-flex align-items-center">
         <div class="me-4">
