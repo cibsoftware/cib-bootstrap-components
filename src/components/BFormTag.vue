@@ -47,16 +47,16 @@ export default {
     }
   },
   computed: {
-    badgeVariant: function () {
+    badgeVariant() {
       return `bg-${this.variant}`
     }
   },
   methods: {
-    handleRemove: function (event) {
+    handleRemove(event) {
       event.stopPropagation()
       this.$emit('remove')
     },
-    handleClick: function (event) {
+    handleClick(event) {
       if (!this.disabled) {
         this.$emit('click', event)
       }

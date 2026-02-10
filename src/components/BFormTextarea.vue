@@ -46,18 +46,18 @@ export default {
     noResize: { type: Boolean, default: false }
   },
   computed: {
-    resizeStyle: function () {
+    resizeStyle() {
       if (this.noResize === true) return 'none'
       return ['vertical', 'horizontal', 'both', 'none'].includes(this.resize) ? this.resize : 'vertical'
     },
-    parsedRows: function () {
+    parsedRows() {
       return typeof this.rows === 'string' ? Number.parseInt(this.rows, 10) : this.rows
     }
   },
   methods: {
-    handleBlur: function (event) { this.$emit('blur', event) },
-    handleFocus: function (event) { this.$emit('focus', event) },
-    focus: function () { this.$refs.textarea.focus() }
+    handleBlur(event) { this.$emit('blur', event) },
+    handleFocus(event) { this.$emit('focus', event) },
+    focus() { this.$refs.textarea.focus() }
   }
 }
 </script>

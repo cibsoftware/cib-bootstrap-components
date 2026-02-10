@@ -33,14 +33,14 @@ export default {
   inject: ['registerTab', 'activeTab', 'registerClickHandler'],
   computed: {
     isActive() {
-      return this.activeTab() === this.id;
+      return this.activeTab() === this.id
     }
   },
   methods: {
-    handleClick: function () {
+    handleClick() {
       this.$emit('click')
     },
-    externalClick: function (tabId) {
+    externalClick(tabId) {
       if (tabId === this.id) {
         this.handleClick()
       }

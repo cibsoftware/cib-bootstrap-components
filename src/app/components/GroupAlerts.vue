@@ -30,12 +30,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import BAlert from "@/components/BAlert.vue";
+import { ref } from 'vue'
+import BAlert from '@/components/BAlert.vue'
 
-const visibilityValue = ref(false);
+const visibilityValue = ref(false)
 
 const toggleVisibility = () => {
-  visibilityValue.value = !visibilityValue.value;
-};
+  visibilityValue.value = !visibilityValue.value
+}
 </script>

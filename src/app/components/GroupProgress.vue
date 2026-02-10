@@ -44,7 +44,7 @@
 </template>
 
 <script setup>
-import BProgress from "@/components/BProgress.vue";
+import BProgress from '@/components/BProgress.vue'
 </script>
 
 <style scoped>

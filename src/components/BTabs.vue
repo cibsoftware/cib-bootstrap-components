@@ -56,36 +56,36 @@ export default {
       default: ''
     }
   },
-  data: function () {
+  data() {
     return {
       tabs: [],
       activeTab: null,
       tabClickHandlers: []
-    };
+    }
   },
   computed: {
-    customClass: function () {
+    customClass() {
       return this.class
     }
   },
   methods: {
-    selectTab: function (tabId) {
+    selectTab(tabId) {
       this.activeTab = tabId
       this.notifyTabClick(tabId)
     },
-    registerTab: function (tab) {
+    registerTab(tab) {
       this.tabs.push(tab)
       if (this.tabs.length === 1) {
         this.activeTab = tab.id
       }
     },
-    registerClickHandler: function (callback) {
+    registerClickHandler(callback) {
       this.tabClickHandlers.push(callback)
     },
-    notifyTabClick: function (tabId) {
+    notifyTabClick(tabId) {
       this.tabClickHandlers.forEach(callback => callback(tabId))
     },
-    handleKeydown: function (event) {
+    handleKeydown(event) {
       const currentIndex = this.tabs.findIndex(tab => tab.id === this.activeTab)
       let nextIndex = currentIndex
 

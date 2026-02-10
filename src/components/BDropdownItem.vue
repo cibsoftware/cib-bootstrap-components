@@ -33,7 +33,7 @@ export default {
     to: String
   },
   computed: {
-    url: function () { /*jshint scripturl:true */
+    url() { /*jshint scripturl:true */
       if (this.href) return this.href
       else if (this.to) return '#' + this.to
       else return 'javascript:void(0)'

@@ -43,10 +43,10 @@ export default {
     }
   },
   computed: {
-    variantClass: function () {
+    variantClass() {
       return `text-bg-${this.variant}`
     },
-    pillClass: function () {
+    pillClass() {
       return this.pill ? 'rounded-pill' : ''
     }
   }

@@ -84,7 +84,7 @@ export default {
       immediate: true
     }
   },
-  data: function () {
+  data() {
     return {
       showPicker: false,
       currentDate: this.parseToDate(this.modelValue) || new Date(),
@@ -92,26 +92,26 @@ export default {
     }
   },
   computed: {
-    inputClassComputed: function () {
+    inputClassComputed() {
       return [this.inputClass, this.size ? `form-control-${this.size}` : '']
         .filter(Boolean)
         .join(' ')
     },
-    inputGroupClassComputed: function () {
+    inputGroupClassComputed() {
       return [this.inputGroupClass, this.size ? `input-group-${this.size}` : '']
         .filter(Boolean)
         .join(' ')
     },
-    formattedDate: function () {
+    formattedDate() {
       return this.selectedDate ? this.selectedDate.toLocaleDateString() : ''
     },
-    formattedMonthYear: function () {
+    formattedMonthYear() {
       return this.currentDate.toLocaleString(this.$i18n.locale, { month: 'long', year: 'numeric' })
     },
-    daysOfWeek: function () {
-      return this.$t('bcomponents.datepicker.daysOfWeek').split(",")
+    daysOfWeek() {
+      return this.$t('bcomponents.datepicker.daysOfWeek').split(',')
     },
-    weeksInMonth: function () {
+    weeksInMonth() {
       const weeks = []
       let week = []
 
@@ -140,7 +140,7 @@ export default {
 
       return weeks
     },
-    daysInMonth: function () {
+    daysInMonth() {
       const year = this.currentDate.getFullYear()
       const month = this.currentDate.getMonth()
       const firstDayOfMonth = new Date(year, month, 1)
@@ -156,81 +156,81 @@ export default {
 
       // Add days from the current month
       for (let day = 1; day <= lastDayOfMonth.getDate(); day++) {
-        days.push({ date: new Date(year, month, day), day: day, isOtherMonth: false })
+        days.push({ date: new Date(year, month, day), day, isOtherMonth: false })
       }
 
       return days
     }
   },
   methods: {
-    openPicker: function () {
+    openPicker() {
       this.showPicker = true
       this.$eventBus.emit('datepicker-opened', this)
       document.addEventListener('click', this.handleDocumentClick)
       document.addEventListener('keydown', this.handleEscapeKey)
     },
-    closePicker: function () {
+    closePicker() {
       this.showPicker = false
       document.removeEventListener('click', this.handleDocumentClick)
       document.removeEventListener('keydown', this.handleEscapeKey)
     },
-    handleEscapeKey: function (event) {
+    handleEscapeKey(event) {
       if (event.key === 'Escape') {
         this.closePicker()
       }
     },
-    handleDocumentClick: function (event) {
+    handleDocumentClick(event) {
       if (this.showPicker && !this.$el.contains(event.target)) {
         this.closePicker()
       }
     },
-    prevMonth: function () {
+    prevMonth() {
       this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 1, 1)
     },
-    nextMonth: function () {
+    nextMonth() {
       this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 1)
     },
-    selectDate: function (date) {
+    selectDate(date) {
       this.selectedDate = date
       this.updateModel()
       this.closePicker()
     },
-    selectToday: function () {
+    selectToday() {
       this.selectDate(new Date())
     },
-    clearSelection: function () {
+    clearSelection() {
       this.selectedDate = null
       this.updateModel()
       this.closePicker()
     },
-    isSelected: function (date) {
+    isSelected(date) {
       return this.selectedDate && this.selectedDate.toDateString() === date.toDateString()
     },
-    isDisabled: function (date) {
+    isDisabled(date) {
       return this.dateDisabledFn && this.dateDisabledFn(date.toISOString().split('T')[0], date)
     },
-    updateModel: function () {
+    updateModel() {
       const value = this.selectedDate ? this.selectedDate.toISOString() : null
       this.$emit('update:modelValue', value)
     },
-    parseToDate: function (value) {
+    parseToDate(value) {
       if (!value) return null
       if (value instanceof Date) return value
       if (typeof value === 'string') return new Date(value)
       return null
     },
-    formatDateForAccessibility: function (date) {
+    formatDateForAccessibility(date) {
       return date.toLocaleDateString(this.$i18n.locale, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
     }
   },
-  created: function () {
+  created() {
     this.$eventBus.on('datepicker-opened', (openedPicker) => {
       if (openedPicker !== this) {
         this.closePicker()
       }
     })
   },
-  beforeUnmount: function () {
+  beforeUnmount() {
     this.$eventBus.off('datepicker-opened')
     document.removeEventListener('click', this.handleDocumentClick)
   }

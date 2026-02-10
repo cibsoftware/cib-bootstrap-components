@@ -45,7 +45,7 @@ export default {
     style: { type: String, default: '' }
   },
   computed: {
-    isGrow: function () {
+    isGrow() {
       return this.type === 'grow'
     },
     computedStyle() {

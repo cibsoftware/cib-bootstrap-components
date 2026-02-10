@@ -67,7 +67,7 @@ export default {
     inputClass: { type: String, default: null },
     inputGroupClass: { type: String, default: null },
   },
-  data: function () {
+  data() {
     return {
       hour: null,
       minute: null,
@@ -75,30 +75,30 @@ export default {
     }
   },
   computed: {
-    placeholderText: function () {
+    placeholderText() {
       return this.modelValue === null ? this.$t('bcomponents.timepicker.noTimeSelected') : ''
     },
-    formattedTime: function () {
+    formattedTime() {
       return this.modelValue === null ? '' : `${this.paddedHour}:${this.paddedMinute}`
     },
-    paddedHour: function () {
+    paddedHour() {
       return this.hour === null ? '--' : String(this.hour).padStart(2, '0')
     },
-    paddedMinute: function () {
+    paddedMinute() {
       return this.minute === null ? '--' : String(this.minute).padStart(2, '0')
     },
-    displayHour: function () {
+    displayHour() {
       return this.hour === null ? '--' : this.paddedHour
     },
-    displayMinute: function () {
+    displayMinute() {
       return this.minute === null ? '--' : this.paddedMinute
     },
-    inputClassComputed: function () {
+    inputClassComputed() {
       return [this.inputClass, this.size ? `form-control-${this.size}` : '']
         .filter(Boolean)
         .join(' ')
     },
-    inputGroupClassComputed: function () {
+    inputGroupClassComputed() {
       return [this.inputGroupClass, this.size ? `input-group-${this.size}` : '']
         .filter(Boolean)
         .join(' ')
@@ -120,55 +120,55 @@ export default {
     }
   },
   methods: {
-    openPicker: function () {
+    openPicker() {
       this.showPicker = true
       this.$eventBus.emit('timepicker-opened', this)
       document.addEventListener('click', this.handleDocumentClick)
       document.addEventListener('keydown', this.handleEscapeKey)
     },
-    handleEscapeKey: function (event) {
+    handleEscapeKey(event) {
       if (event.key === 'Escape') {
         this.closePicker()
       }
     },
-    closePicker: function () {
+    closePicker() {
       this.showPicker = false
       document.removeEventListener('click', this.handleDocumentClick)
       document.removeEventListener('keydown', this.handleEscapeKey)
     },
-    handleDocumentClick: function (event) {
+    handleDocumentClick(event) {
       if (this.showPicker && !this.$el.contains(event.target)) {
         this.closePicker()
       }
     },
-    incrementHour: function () {
+    incrementHour() {
       if (this.hour === null) this.hour = 0
       this.hour = (this.hour + 1) % 24
       this.updateModel()
     },
-    decrementHour: function () {
+    decrementHour() {
       if (this.hour === null) this.hour = 23
       this.hour = (this.hour - 1 + 24) % 24
       this.updateModel()
     },
-    incrementMinute: function () {
+    incrementMinute() {
       if (this.minute === null) this.minute = 0
       this.minute = (this.minute + 1) % 60
       this.updateModel()
     },
-    decrementMinute: function () {
+    decrementMinute() {
       if (this.minute === null) this.minute = 59
       this.minute = (this.minute - 1 + 60) % 60
       this.updateModel()
     },
-    updateModel: function () {
+    updateModel() {
       if (this.hour !== null && this.minute !== null) {
         const time = `${String(this.hour).padStart(2, '0')}:${String(this.minute).padStart(2, '0')}`
         this.$emit('update:modelValue', time)
         this.$emit('input', time)
       }
     },
-    clearSelection: function () {
+    clearSelection() {
       if (this.modelValue === null) {
         this.hour = null
         this.minute = null
@@ -179,14 +179,14 @@ export default {
       }
     }
   },
-  created: function () {
+  created() {
     this.$eventBus.on('timepicker-opened', (openedPicker) => {
       if (openedPicker !== this) {
         this.closePicker()
       }
     })
   },
-  beforeUnmount: function () {
+  beforeUnmount() {
     this.$eventBus.off('timepicker-opened')
     document.removeEventListener('click', this.handleDocumentClick)
   }

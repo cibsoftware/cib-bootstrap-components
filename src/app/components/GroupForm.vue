@@ -105,14 +105,14 @@
 </template>
 
 <script setup>
-import BForm from "@/components/BForm.vue";
-import BFormGroup from "@/components/BFormGroup.vue";
-import BFormTag from "@/components/BFormTag.vue";
-import BFormCheckbox from "@/components/BFormCheckbox.vue";
-import BFormDatepicker from "@/components/BFormDatepicker.vue";
-import BFormFile from "@/components/BFormFile.vue";
-import BFormSelect from "@/components/BFormSelect.vue";
-import BFormSelectOption from "@/components/BFormSelectOption.vue";
-import BFormTextarea from "@/components/BFormTextarea.vue";
-import BFormTimepicker from "@/components/BFormTimepicker.vue";
+import BForm from '@/components/BForm.vue'
+import BFormGroup from '@/components/BFormGroup.vue'
+import BFormTag from '@/components/BFormTag.vue'
+import BFormCheckbox from '@/components/BFormCheckbox.vue'
+import BFormDatepicker from '@/components/BFormDatepicker.vue'
+import BFormFile from '@/components/BFormFile.vue'
+import BFormSelect from '@/components/BFormSelect.vue'
+import BFormSelectOption from '@/components/BFormSelectOption.vue'
+import BFormTextarea from '@/components/BFormTextarea.vue'
+import BFormTimepicker from '@/components/BFormTimepicker.vue'
 </script>

@@ -43,9 +43,9 @@
 export default {
   name: 'BWaitingBox',
   props: { styling: String },
-  data: function() { return { done: false, show: true } },
+  data() { return { done: false, show: true } },
   methods: {
-    wait: function(prom, delay) {
+    wait(prom, delay) {
       this.done = false
       this.show = !delay
       if (delay) setTimeout(function() { this.show = true }.bind(this), delay)

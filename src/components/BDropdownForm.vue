@@ -32,7 +32,7 @@ export default {
     }
   },
   methods: {
-    onSubmit: function () {
+    onSubmit() {
       this.$emit('submit')
     }
   }

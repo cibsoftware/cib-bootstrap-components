@@ -53,7 +53,7 @@ export default {
     id: { type: String, default: null }
   },
   computed: {
-    labelColumnClasses: function () {
+    labelColumnClasses() {
       const classes = []
       if (this.labelCols) classes.push(`col-${this.labelCols}`)
       if (this.labelColsSm) classes.push(`col-sm-${this.labelColsSm}`)
@@ -63,7 +63,7 @@ export default {
       classes.push('col-form-label') // Bootstrap form label class
       return classes.join(' ')
     },
-    inputColumnClasses: function () {
+    inputColumnClasses() {
       const classes = []
       if (this.contentCols) classes.push(`col-${this.contentCols}`)
       if (this.contentColsSm) classes.push(`col-sm-${this.contentColsSm}`)
@@ -72,10 +72,10 @@ export default {
       if (this.contentColsXl) classes.push(`col-xl-${this.contentColsXl}`)
       return classes.length ? classes.join(' ') : 'col' // Fallback to `col` if no content columns specified
     },
-    labelSizeClass: function () {
+    labelSizeClass() {
       return this.labelSize ? `col-form-label-${this.labelSize}` : ''
     },
-    labelId: function () {
+    labelId() {
       return this.labelFor || `${this.id || 'form-group'}__label`
     }
   }

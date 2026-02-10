@@ -24,12 +24,12 @@ import ru from '../assets/translations_ru.json'
 import ua from '../assets/translations_ua.json'
 
 export const languages = {
-  en: en,
-  de: de,
-  es: es,
-  it: it,
-  ru: ru,
-  ua: ua
+  en,
+  de,
+  es,
+  it,
+  ru,
+  ua
 }
 
 const i18n = createI18n({

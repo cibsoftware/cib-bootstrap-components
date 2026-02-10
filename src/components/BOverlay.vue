@@ -43,7 +43,7 @@ export default {
     noWrap: { type: Boolean, default: false }
   },
   computed: {
-    overlayColor: function () {
+    overlayColor() {
       return `rgba(255, 255, 255, ${this.opacity})`
     }
   }

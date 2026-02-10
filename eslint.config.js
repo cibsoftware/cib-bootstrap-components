@@ -18,7 +18,7 @@ import js from '@eslint/js'
 import pluginVue from 'eslint-plugin-vue'
 import pluginVitest from '@vitest/eslint-plugin'
 import pluginCypress from 'eslint-plugin-cypress/flat'
-import pluginVueA11y from "eslint-plugin-vuejs-accessibility";
+import pluginVueA11y from 'eslint-plugin-vuejs-accessibility'
 
 export default [
   {
@@ -39,14 +39,14 @@ export default [
     files: ['src/**/__tests__/*'],
   },
 
-  ...pluginVueA11y.configs["flat/recommended"],
+  ...pluginVueA11y.configs['flat/recommended'],
   {
     rules: {
-      "vuejs-accessibility/label-has-for": [
-        "error",
+      'vuejs-accessibility/label-has-for': [
+        'error',
         {
-          "required": {
-            "every": ["id"]
+          'required': {
+            'every': ['id']
           },
         }
       ],
@@ -59,5 +59,28 @@ export default [
       'cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}',
       'cypress/support/**/*.{js,ts,jsx,tsx}'
     ],
+  },
+
+  // CIB formatting rules
+  {
+    'rules': {
+      'semi': ['error', 'never'],
+      'quotes': ['error', 'single', { 'avoidEscape': true }],
+      'max-len': ['error', { 'code': 999999 }],
+      'space-before-function-paren': ['error', {
+        'anonymous': 'never',
+        'named': 'never',
+        'asyncArrow': 'always'
+      }],
+      'object-shorthand': ['error', 'always']
+    },
+  },
+
+  // JSON-specific rules
+  {
+    files: ['translations_*.json'],
+    rules: {
+      'indent': ['error', 'tab']
+    },
   },
 ]
