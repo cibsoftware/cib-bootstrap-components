@@ -59,7 +59,7 @@ export default {
       return 'button'
     },
     computedHref() {
-      return this.href && !this.isRouterLink ? this.href : null;
+      return this.href && !this.isRouterLink ? this.href : null
     },
     linkClasses() {
       return [

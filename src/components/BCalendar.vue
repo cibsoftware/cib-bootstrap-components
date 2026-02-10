@@ -86,19 +86,19 @@ export default {
       default: true
     }
   },
-  data: function () {
+  data() {
     return {
       currentDate: this.parseToDate(this.modelValue || new Date()),
       selectedDate: this.parseToDate(this.modelValue || null)
     }
   },
   watch: {
-    modelValue: function (newValue) {
+    modelValue(newValue) {
       this.updateDates(newValue)
     }
   },
   computed: {
-    weeksInMonth: function () {
+    weeksInMonth() {
       const weeks = []
       let week = []
 
@@ -127,16 +127,16 @@ export default {
 
       return weeks
     },
-    daysOfWeek: function () {
+    daysOfWeek() {
       return this.$t('bcomponents.calendar.daysOfWeek').split(',')
     },
-    formattedMonthYear: function () {
+    formattedMonthYear() {
       return this.currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })
     },
-    formattedSelectedDate: function () {
+    formattedSelectedDate() {
       return this.selectedDate ? this.selectedDate.toLocaleDateString() : ''
     },
-    daysInMonth: function () {
+    daysInMonth() {
       const year = this.currentDate.getFullYear()
       const month = this.currentDate.getMonth()
       const firstDay = new Date(year, month, 1)
@@ -167,32 +167,32 @@ export default {
     }
   },
   methods: {
-    updateDates: function (newValue) {
+    updateDates(newValue) {
       if (newValue) {
         const parsedDate = this.parseToDate(newValue)
         this.currentDate = parsedDate
         this.selectedDate = parsedDate
       }
     },
-    parseToDate: function (value) {
+    parseToDate(value) {
       if (typeof value === 'string') {
         return new Date(value)
       }
       return value
     },
-    prevMonth: function () {
+    prevMonth() {
       this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 1, 1)
     },
-    nextMonth: function () {
+    nextMonth() {
       this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 1)
     },
-    prevYear: function () {
+    prevYear() {
       this.currentDate = new Date(this.currentDate.getFullYear() - 1, this.currentDate.getMonth(), 1)
     },
-    nextYear: function () {
+    nextYear() {
       this.currentDate = new Date(this.currentDate.getFullYear() + 1, this.currentDate.getMonth(), 1)
     },
-    isToday: function (date) {
+    isToday(date) {
       const today = new Date()
       return (
         date.getDate() === today.getDate() &&
@@ -200,24 +200,24 @@ export default {
         date.getFullYear() === today.getFullYear()
       )
     },
-    selectDate: function (date) {
+    selectDate(date) {
       this.selectedDate = date
       this.$emit('update:modelValue', date)
     },
-    selectToday: function () {
+    selectToday() {
       this.selectDate(new Date())
     },
-    clearSelection: function () {
+    clearSelection() {
       this.selectedDate = null
       this.$emit('update:modelValue', null)
     },
-    isSelected: function (date) {
+    isSelected(date) {
       return this.selectedDate && this.selectedDate.toDateString() === date.toDateString()
     },
-    isDisabled: function (date) {
+    isDisabled(date) {
       return this.dateDisabledFn && this.dateDisabledFn(date.toISOString().split('T')[0], date)
     },
-    formatDateForAccessibility: function (date) {
+    formatDateForAccessibility(date) {
       return date.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
     }
   }

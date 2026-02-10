@@ -46,7 +46,7 @@ export default {
     }
   },
   computed: {
-    classes: function () {
+    classes() {
       let res = []
       res.push('btn-' + this.variant)
       if (this.toggleClass) res.push(this.toggleClass)
@@ -54,37 +54,37 @@ export default {
       return res
     }
   },
-  data: function () {
+  data() {
     return {
       dropdownInstance: null,
       isOpen: false
     }
   },
-  mounted: function () {
+  mounted() {
     this.dropdownInstance = new Bootstrap.Dropdown(this.$refs.toggleButton)
     document.addEventListener('click', this.handleDocumentClick)
     document.addEventListener('keydown', this.handleKeydown)
   },
-  beforeUnmount: function () {
+  beforeUnmount() {
     document.removeEventListener('click', this.handleDocumentClick)
     document.removeEventListener('keydown', this.handleKeydown)
   },
   methods: {
-    show: function () {
+    show() {
       if (this.dropdownInstance && !this.isOpen) {
         this.dropdownInstance.show()
         this.isOpen = true
         this.$emit('shown')
       }
     },
-    hide: function () {
+    hide() {
       if (this.dropdownInstance && this.isOpen) {
         this.dropdownInstance.hide()
         this.isOpen = false
         this.$emit('hidden')
       }
     },
-    toggle: function (event) {
+    toggle(event) {
       if (this.isOpen) {
         this.hide()
       } else {
@@ -94,13 +94,13 @@ export default {
         event.stopPropagation()
       }
     },
-    handleDocumentClick: function (event) {
+    handleDocumentClick(event) {
       if (this.$refs.dropdownContainer && this.$refs.dropdownContainer.contains(event.target)) {
         return
       }
       this.hide()
     },
-    handleKeydown: function (event) {
+    handleKeydown(event) {
       if (event.key === 'Escape' && this.isOpen) {
         event.preventDefault()
         this.hide()

@@ -35,7 +35,7 @@ export default {
     rounded: { type: Boolean, default: true } // If true, avatar will be rounded-circle
   },
   computed: {
-    avatarClasses: function () {
+    avatarClasses() {
       return [
         'd-inline-flex', 'align-items-center', 'justify-content-center',
         `bg-${this.variant}`,
@@ -43,7 +43,7 @@ export default {
         'overflow-hidden'
       ]
     },
-    avatarStyles: function () {
+    avatarStyles() {
       return {
         width: this.computedSize,
         height: this.computedSize,
@@ -51,7 +51,7 @@ export default {
         textAlign: 'center'
       }
     },
-    computedSize: function () {
+    computedSize() {
       switch (this.size) {
         case 'sm':
           return '32px'
@@ -61,7 +61,7 @@ export default {
           return '48px'
       }
     },
-    computedFontSize: function () {
+    computedFontSize() {
       switch (this.size) {
         case 'sm':
           return '14px'
@@ -71,10 +71,10 @@ export default {
           return '20px'
       }
     },
-    computedAriaLabel: function () {
+    computedAriaLabel() {
       return this.alt || (this.text ? this.$t('bcomponents.avatar.avatarFor', { name: this.text }) : this.$t('bcomponents.avatar.defaultAvatar'))
     },
-    initials: function () {
+    initials() {
       return this.text ? this.text.substring(0, 2).toUpperCase() : ''
     }
   }

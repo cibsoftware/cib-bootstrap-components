@@ -58,12 +58,12 @@ export default {
     headerClass: String,
     footerClass: [String, Object]
   },
-  data: function() {
+  data() {
     return {
       lastFocused: null
     }
   },
-  mounted: function () {
+  mounted() {
     this.modal = new Bootstrap.Modal(this.$refs.modal, {
       backdrop: 'static',
       keyboard: true
@@ -83,7 +83,7 @@ export default {
     this.$refs.modal.addEventListener('hidePrevented.bs.modal', () => this.hide('close'))
   },
   computed: {
-    sizeClass: function () {
+    sizeClass() {
       return ['sm', 'lg', 'xl'].includes(this.size) ? `modal-${this.size}` : ''
     },
     modalClasses() {
@@ -94,17 +94,17 @@ export default {
     }
   },
   methods: {
-    cancel: function () {
+    cancel() {
       this.hide('cancel')
     },
-    ok: function () {
+    ok() {
       this.hide('ok')
     },
-    hide: function (trigger) {
+    hide(trigger) {
       this.modal.hide()
       this.$emit('hide', trigger)
     },
-    restoreFocus: function () {
+    restoreFocus() {
       this.$nextTick(() => {
         if (this.lastFocused && typeof this.lastFocused.focus === 'function') {
           // Check if the original element still exists AND is visible/focusable
@@ -121,7 +121,7 @@ export default {
         this.lastFocused = null
       })
     },
-    isElementVisible: function (element) {
+    isElementVisible(element) {
       // Check if element or any parent is hidden
       if (!element.offsetParent && element !== document.body) {
         return false
@@ -147,7 +147,7 @@ export default {
       
       return true
     },
-    findFocusableFallback: function (element) {
+    findFocusableFallback(element) {
       // Check if element was inside a dropdown menu
       const dropdownItem = element.closest('.dropdown-item')
       if (dropdownItem) {
@@ -179,7 +179,7 @@ export default {
       
       return null
     },
-    show: function () {
+    show() {
       this.lastFocused = document.activeElement
       this.modal.show()
     }

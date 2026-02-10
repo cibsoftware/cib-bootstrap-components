@@ -37,22 +37,22 @@ export default {
     precision: { type: Number, default: 0 }
   },
   computed: {
-    computedWidth: function() {
+    computedWidth() {
       return (this.value / this.max) * 100 + '%'
     },
-    classes: function() {
+    classes() {
       const res = []
       if (this.variant) {
         res.push('bg-' + this.variant)
       }
       if (this.animated) {
-        res.push('progress-bar-striped', 'progress-bar-animated');
+        res.push('progress-bar-striped', 'progress-bar-animated')
       } else if (this.striped) {
         res.push('progress-bar-striped')
       }
       return res
     },
-    computedLabel: function() {
+    computedLabel() {
       const percentage = ((this.value / this.max) * 100).toFixed(this.precision)
       if (this.showProgress) return percentage + '%'
       if (this.showValue) return this.value

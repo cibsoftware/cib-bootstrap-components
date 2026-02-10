@@ -71,26 +71,26 @@ export default {
     ariaDescribedby: { type: String, default: null }
   },
   computed: {
-    sizeClass: function () {
+    sizeClass() {
       return ['sm', 'lg'].includes(this.size) ? `form-control-${this.size}` : ''
     },
-    validationClass: function () {
+    validationClass() {
       if (this.state === true) return 'is-valid'
       if (this.state === false) return 'is-invalid'
       return ''
     },
-    hasWrapper: function () {
+    hasWrapper() {
       return !!this.invalidFeedback || !!this.$slots.append
     }
   },
   methods: {
-    handleBlur: function (event) {
+    handleBlur(event) {
       this.$emit('blur', event)
     },
-    handleFocus: function (event) {
+    handleFocus(event) {
       this.$emit('focus', event)
     },
-    focus: function () {
+    focus() {
       this.$refs.input.focus()
     }
   },

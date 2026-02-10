@@ -37,14 +37,14 @@ export default {
   components: {
     BButtonClose
   },
-  data: function () {
+  data() {
     return {
       show_: false,
       timeoutId: null
     }
   },
   watch: {
-    show: function (val) {
+    show(val) {
       this.show_ = val
       if (typeof val === 'number' && val > 0) {
         this.clearTimeout()
@@ -55,19 +55,19 @@ export default {
     }
   },
   methods: {
-    dismiss: function () {
+    dismiss() {
       this.clearTimeout()
       this.show_ = false
       this.$emit('dismissed')
     },
-    clearTimeout: function () {
+    clearTimeout() {
       if (this.timeoutId) {
         clearTimeout(this.timeoutId)
         this.timeoutId = null
       }
     }
   },
-  beforeUnmount: function () {
+  beforeUnmount() {
       this.clearTimeout()
   }
 }

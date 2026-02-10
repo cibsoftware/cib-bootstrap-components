@@ -37,13 +37,13 @@ export default {
     modelValue: { type: [File, Array], default: () => [] },
     variant: { type: String, default: 'primary' }
   },
-  data: function () {
+  data() {
     return {
       files: []
     }
   },
   computed: {
-    classes: function () {
+    classes() {
       return ['form-control', `form-control-${this.variant}`]
     }
   },

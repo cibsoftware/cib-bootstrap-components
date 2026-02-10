@@ -47,10 +47,10 @@ export default {
     ariaDescribedby: { type: String, default: null }
   },
   computed: {
-    sizeClass: function () {
+    sizeClass() {
       return ['sm', 'lg'].includes(this.size) ? `input-group-${this.size}` : ''
     },
-    hasDefaultSlot: function () {
+    hasDefaultSlot() {
       return !!this.$slots.default
     }
   }

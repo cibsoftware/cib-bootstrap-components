@@ -35,12 +35,12 @@ export default {
     ariaDescribedby: { type: String, default: null }
   },
   computed: {
-    formClasses: function () {
+    formClasses() {
       return ['needs-validation', this.formClass]
     }
   },
   methods: {
-    handleSubmit: function (event) {
+    handleSubmit(event) {
       if (!this.novalidate && !event.target.checkValidity()) {
         event.preventDefault()
         event.stopPropagation()

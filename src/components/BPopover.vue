@@ -40,7 +40,7 @@ export default {
     width: { type: String, default: null },
     maxWidth: { type: String, default: null }
   },
-  data: function () {
+  data() {
     return {
       isVisible: false,
       popperInstance: null,
@@ -50,7 +50,7 @@ export default {
     }
   },
   watch: {
-    show: function (newValue) {
+    show(newValue) {
       if (newValue) {
         this.showPopover()
       } else {
@@ -58,7 +58,7 @@ export default {
       }
     }
   },
-  mounted: function () {
+  mounted() {
     this.movePopoverToBody()
     this.setEventListeners()
     const popover = this.$refs.popover
@@ -82,7 +82,7 @@ export default {
       }, 1000)
     }
   },
-  beforeUnmount: function () {
+  beforeUnmount() {
     const popover = this.$refs.popover
 
     if (popover) {
@@ -105,10 +105,10 @@ export default {
     }
   },
   methods: {
-    movePopoverToBody: function () {
+    movePopoverToBody() {
       document.body.appendChild(this.$refs.popover)
     },
-    getTargetElement: function () {
+    getTargetElement() {
       if (typeof this.target === 'function') {
         const target = this.target()
         if (target instanceof HTMLElement) {
@@ -124,7 +124,7 @@ export default {
       //console.error('Invalid target type. Expected a function or string.')
       return null
     },
-    setEventListeners: function () {
+    setEventListeners() {
       const targetElement = this.getTargetElement()
       if (!targetElement) {
         //console.error('Target element for popover not found.')
@@ -141,15 +141,15 @@ export default {
         }
       })
     },
-    handleClickTrigger: function () {
+    handleClickTrigger() {
       this.triggerType = 'click'
       this.togglePopover()
     },
-    handleHoverTrigger: function () {
+    handleHoverTrigger() {
       this.triggerType = 'hover'
       this.showPopover()
     },
-    togglePopover: function () {
+    togglePopover() {
       this.isVisible = !this.isVisible
       if (this.isVisible) {
         this.createPopperInstance()
@@ -157,32 +157,32 @@ export default {
         this.destroyPopper()
       }
     },
-    showPopover: function () {
+    showPopover() {
       this.cancelHidePopover()
       this.isVisible = true
       this.createPopperInstance()
       this.$refs.popover.focus()
     },
-    hidePopover: function () {
+    hidePopover() {
       if (this.triggerType === 'click') {
         return
       }
       this.isVisible = false
       this.destroyPopper()
     },
-    scheduleHidePopover: function () {
+    scheduleHidePopover() {
       if (this.triggers === 'manual') return
       this.hideTimeout = setTimeout(() => {
         this.hidePopover()
       }, this.hideDelay)
     },
-    cancelHidePopover: function () {
+    cancelHidePopover() {
       if (this.hideTimeout) {
         clearTimeout(this.hideTimeout)
         this.hideTimeout = null
       }
     },
-    createPopperInstance: function () {
+    createPopperInstance() {
       const targetElement = this.getTargetElement()
       if (!targetElement || !this.$refs.popover) return
 
@@ -207,13 +207,13 @@ export default {
 
       this.$refs.popover.style.zIndex = '1050'
     },
-    destroyPopper: function () {
+    destroyPopper() {
       if (this.popperInstance) {
         this.popperInstance.destroy()
         this.popperInstance = null
       }
     },
-    handleDocumentClick: function (event) {
+    handleDocumentClick(event) {
       if (this.triggerType === 'click' && this.isVisible) {
         const targetElement = this.getTargetElement()
         if (
@@ -227,7 +227,7 @@ export default {
         }
       }
     },
-    handleKeydown: function (event) {
+    handleKeydown(event) {
       if (event.key === 'Escape' && this.isVisible) {
         this.hidePopover()
       }

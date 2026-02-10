@@ -69,8 +69,8 @@
 </template>
 
 <script setup>
-import BButton from "@/components/BButton.vue";
-import BModal from "@/components/BModal.vue";
+import BButton from '@/components/BButton.vue'
+import BModal from '@/components/BModal.vue'
 
-const message = "Error message box body."
+const message = 'Error message box body.'
 </script>

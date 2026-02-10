@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-import BAvatar from "@/components/BAvatar.vue";
+import BAvatar from '@/components/BAvatar.vue'
 </script>
 
 <style scoped>

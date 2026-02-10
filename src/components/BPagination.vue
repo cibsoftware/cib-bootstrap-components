@@ -53,16 +53,16 @@ export default {
     perPage: { type: Number, default: 10 },
     wrapperClass: { type: String, default: '' }
   },
-  data: function () {
+  data() {
     return {
       currentPage: this.modelValue
     }
   },
   computed: {
-    totalPages: function () {
+    totalPages() {
       return Math.ceil(this.totalRows / this.perPage)
     },
-    pages: function () {
+    pages() {
       const half = Math.floor(5 / 2)
       let start = Math.max(1, this.currentPage - half)
       let end = Math.min(this.totalPages, start + 5 - 1)
@@ -75,13 +75,13 @@ export default {
     }
   },
   watch: {
-    modelValue: function (newValue) { this.currentPage = newValue },
-    currentPage: function (newValue) {
+    modelValue(newValue) { this.currentPage = newValue },
+    currentPage(newValue) {
       this.$emit('update:modelValue', newValue)
     }
   },
   methods: {
-    goToPage: function (page) {
+    goToPage(page) {
       if (page >= 1 && page <= this.totalPages) {
         this.currentPage = page
       }

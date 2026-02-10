@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-import BWaitingBox from "@/components/BWaitingBox.vue";
+import BWaitingBox from '@/components/BWaitingBox.vue'
 </script>
 
 <style scoped>

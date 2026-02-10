@@ -30,6 +30,6 @@
 </template>
 
 <script setup>
-import BTab from "@/components/BTab.vue";
-import BTabs from "@/components/BTabs.vue";
+import BTab from '@/components/BTab.vue'
+import BTabs from '@/components/BTabs.vue'
 </script>

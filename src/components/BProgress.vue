@@ -51,8 +51,8 @@ export default {
       precision: { type: Number, default: 0 }
     },
     computed: {
-      progressStyle: function() {
-          return this.height ? { height: typeof this.height === 'number' ? this.height + 'px' : this.height } : {};
+      progressStyle() {
+          return this.height ? { height: typeof this.height === 'number' ? this.height + 'px' : this.height } : {}
       }
     }
 }

@@ -73,7 +73,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import BFormTimepicker from "@/components/BFormTimepicker.vue"
+import BFormTimepicker from '@/components/BFormTimepicker.vue'
 
 const basicTime = ref(null)
 const prependTime = ref(null)

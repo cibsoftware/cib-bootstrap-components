@@ -43,8 +43,8 @@
 </template>
 
 <script setup>
-import BButton from "@/components/BButton.vue";
-import BButtonClose from "@/components/BButtonClose.vue";
+import BButton from '@/components/BButton.vue'
+import BButtonClose from '@/components/BButtonClose.vue'
 </script>
 
 <style scoped>

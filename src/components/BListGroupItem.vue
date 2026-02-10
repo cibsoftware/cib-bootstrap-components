@@ -40,7 +40,7 @@ export default {
     variant: { type: String, default: 'light' }
   },
   computed: {
-    itemClasses: function () {
+    itemClasses() {
       const classes = {
         'list-group-item-action': this.isButton || this.isLink,
         active: this.active,
@@ -51,13 +51,13 @@ export default {
       }
       return classes
     },
-    isLink: function () {
+    isLink() {
       return this.to || this.href
     },
-    isButton: function () {
+    isButton() {
       return this.button
     },
-    itemTag: function () {
+    itemTag() {
       if (this.isLink) {
         return 'a'
       }
@@ -65,7 +65,7 @@ export default {
     }
   },
   methods: {
-    handleClick: function (event) {
+    handleClick(event) {
       if (this.disabled) {
         event.preventDefault()
         return

@@ -72,7 +72,7 @@ export default {
       else if (this.size === 'lg') return 'form-select-lg'
       else return ''
     },
-    groupedOptions: function () {
+    groupedOptions() {
       return this.options.map(option => {
         if (typeof option === 'object' && option.label && Array.isArray(option.options)) {
           return option
@@ -84,19 +84,19 @@ export default {
       })
     },
     value: {
-      set: function (val) {
+      set(val) {
         this.$emit('update:modelValue', val)
       },
-      get: function () {
+      get() {
         return this.modelValue
       }
     }
   },
   methods: {
-    handleBlur: function (event) {
+    handleBlur(event) {
       this.$emit('blur', event)
     },
-    handleFocus: function (event) {
+    handleFocus(event) {
       this.$emit('focus', event)
     }
   }

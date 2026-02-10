@@ -43,30 +43,30 @@ export default {
     disabled: { type: Boolean, default: false }
   },
   computed: {
-    tag: function () {
+    tag() {
       if (this.href) {
         return 'a'
       }
       return this.to ? 'router-link' : 'button'
     },
-    classes: function () {
+    classes() {
       const res = []
       res.push(`btn-${this.variant}`)
       if (this.block) res.push('w-100')
       return res
     },
-    sizeClass: function () {
+    sizeClass() {
       return ['sm', 'lg'].includes(this.size) ? `btn-${this.size}` : ''
     },
-    computedHref: function () {
+    computedHref() {
       return this.href ? this.href : null
     },
-    isRouterLink: function () {
+    isRouterLink() {
       return !!this.to
     }
   },
   methods: {
-    click: function (event) {
+    click(event) {
       if (this.disabled) {
         event.preventDefault()
         event.stopImmediatePropagation()
@@ -76,7 +76,7 @@ export default {
         this.$emit('click', event)
       }
     },
-    submit: function (event) {
+    submit(event) {
       if (this.disabled) {
         event.preventDefault()
         event.stopImmediatePropagation()
@@ -86,7 +86,7 @@ export default {
         this.$emit('submit', event)
       }
     },
-    focus: function () {
+    focus() {
       const element = this.$refs.button
       if (element && element.focus) {
         element.focus()

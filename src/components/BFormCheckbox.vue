@@ -51,10 +51,10 @@ export default {
     }
   },
   computed: {
-    isSwitch: function () {
+    isSwitch() {
       return this.switch
     },
-    computedChecked: function () {
+    computedChecked() {
       if (Array.isArray(this.modelValue)) {
         return this.modelValue.includes(this.value)
       }
@@ -62,7 +62,7 @@ export default {
     }
   },
   methods: {
-    updateValue: function (event) {
+    updateValue(event) {
       const checked = event.target.checked
       if (Array.isArray(this.modelValue)) {
         const newValue = [...this.modelValue]

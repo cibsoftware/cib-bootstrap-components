@@ -50,7 +50,7 @@ export default {
     }
   },
   computed: {
-    colClasses: function () {
+    colClasses() {
       const classes = []
 
       if (this.cols) classes.push(`col-${this.cols}`)

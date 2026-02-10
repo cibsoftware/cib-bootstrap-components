@@ -73,7 +73,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import BFormDatepicker from "@/components/BFormDatepicker.vue"
+import BFormDatepicker from '@/components/BFormDatepicker.vue'
 
 const basicDate = ref(new Date().toISOString())
 const prependDate = ref(null)
