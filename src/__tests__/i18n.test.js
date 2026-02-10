@@ -279,7 +279,7 @@ describe('i18n', () => {
           }
 
           // Check if key is declared in en translation
-          const isDeclared = stringLongKeys.some(k => k === keyPath)
+          const isDeclared = stringLongKeys.includes(keyPath)
           if (!isDeclared) {
             notDeclaredKeys.push(keyPath)
           }

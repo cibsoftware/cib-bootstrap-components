@@ -25,9 +25,7 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:unit": "vitest run --coverage --reporter=default --reporter=junit --outputFile=target/vitest-reports/TEST-front-end.xml",
-    "lint": "eslint . --fix",
-    "format": "prettier --write src/",
-    "publish:dev": "npm run build && npm version prerelease --preid=dev --force && npm publish --registry https://nexus.cib.de/repository/npm-hosted-dev/ --tag dev"
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "vue": "3.5.16",
