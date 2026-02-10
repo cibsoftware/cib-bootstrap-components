@@ -66,7 +66,7 @@ export default {
       const checked = event.target.checked
       if (Array.isArray(this.modelValue)) {
         const newValue = [...this.modelValue]
-        const index = newValue.findIndex(item => item === this.value)
+        const index = newValue.indexOf(this.value)
         if (checked && index === -1) {
           newValue.push(this.value)
         } else if (!checked && index > -1) {
