@@ -17,7 +17,7 @@
 
 -->
 <template>
-  <a class="navbar-brand" :href="'#' + to" :aria-label="$t('bcomponents.navbar.brand')">
+  <a ref="brandLink" class="navbar-brand" :href="'#' + to" tabindex="-1">
     <slot></slot>
   </a>
 </template>
