@@ -24,7 +24,7 @@
     :class="[sizeClass, classes]"
     :href="computedHref"
     :to="isRouterLink ? to : null"
-    :role="tag === 'button' ? 'button' : null"
+    :role="tag !== 'button' && tag !== 'router-link' ? 'button' : null"
     :aria-disabled="disabled ? 'true' : null"
     :disabled="disabled && tag === 'button'">
       <slot></slot>
