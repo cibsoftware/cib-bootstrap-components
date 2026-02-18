@@ -17,11 +17,11 @@
 
 -->
 <template>
-  <div class="modal fade" ref="modal" tabindex="-1" role="dialog" :aria-labelledby="'modal-title'">
+  <div class="modal fade" ref="modal" tabindex="-1" role="dialog" aria-modal="true" :aria-labelledby="modalTitleId">
     <div class="modal-dialog" :class="modalClasses" role="document">
       <div class="modal-content" :class="{ 'modal-dialog-scrollable': scrollable }">
         <div class="modal-header" :class="headerClass">
-          <h5 class="modal-title" :id="'modal-title'">{{ title }}</h5>
+          <h5 class="modal-title" :id="modalTitleId">{{ title }}</h5>
           <button type="button" class="btn-close" @click="hide('headerclose')" :aria-label="$t('confirm.close')"></button>
         </div>
         <div class="modal-body" :class="bodyClass">
@@ -60,7 +60,22 @@ export default {
   },
   data() {
     return {
-      lastFocused: null
+      lastFocused: null,
+      uid: Math.random().toString(36).slice(2)
+    }
+  },
+  computed: {
+    modalTitleId() {
+      return `modal-title-${this.uid}`
+    },
+    sizeClass() {
+      return ['sm', 'lg', 'xl'].includes(this.size) ? `modal-${this.size}` : ''
+    },
+    modalClasses() {
+      return [
+        this.sizeClass,
+        { 'modal-dialog-scrollable': this.scrollable, 'modal-fullscreen': this.fullscreen }
+      ]
     }
   },
   mounted() {
@@ -81,17 +96,6 @@ export default {
       this.restoreFocus()
     })
     this.$refs.modal.addEventListener('hidePrevented.bs.modal', () => this.hide('close'))
-  },
-  computed: {
-    sizeClass() {
-      return ['sm', 'lg', 'xl'].includes(this.size) ? `modal-${this.size}` : ''
-    },
-    modalClasses() {
-      return [
-  		  this.sizeClass,
-	      { 'modal-dialog-scrollable': this.scrollable, 'modal-fullscreen': this.fullscreen }
-      ]
-    }
   },
   methods: {
     cancel() {
