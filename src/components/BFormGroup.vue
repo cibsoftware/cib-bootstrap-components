@@ -17,9 +17,12 @@
 
 -->
 <template>
-  <fieldset class="form-group" :id="id" :aria-labelledby="label ? labelId : null">
+  <fieldset class="form-group" :id="id" :aria-labelledby="(label || $slots.label) ? labelId : null">
     <div class="row gx-1">
-      <legend v-if="label || $slots.label" tabindex="-1" :id="labelId" :class="[labelClass, labelColumnClasses, labelSizeClass]">
+      <label v-if="labelFor && (label || $slots.label)" :for="labelFor" :id="labelId" :class="[labelClass, labelColumnClasses, labelSizeClass]">
+          <slot name="label">{{ label }}</slot>
+      </label>
+      <legend v-else-if="!labelFor && (label || $slots.label)" tabindex="-1" :id="labelId" :class="[labelClass, labelColumnClasses, labelSizeClass]">
           <slot name="label">{{ label }}</slot>
       </legend>
       <div :class="inputColumnClasses">
