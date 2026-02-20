@@ -17,7 +17,7 @@
 
 -->
 <template>
-  <nav class="navbar fixed-top navbar-expand-md" role="navigation" :aria-label="$t('bcomponents.navbar.mainNavigation')">
+  <nav class="navbar fixed-top navbar-expand-md" :aria-label="$t('bcomponents.navbar.mainNavigation')">
     <slot></slot>
   </nav>
 </template>
