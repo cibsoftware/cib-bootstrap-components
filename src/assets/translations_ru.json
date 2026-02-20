@@ -49,7 +49,6 @@
 		"navbar": {
 			"mainNavigation": "Основная навигация",
 			"toggleNavigation": "Переключить навигацию",
-			"brand": "Бренд",
 			"toggleDropdown": "Переключить"
 		},
 		"pagination": {

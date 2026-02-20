@@ -49,7 +49,6 @@
 		"navbar": {
 			"mainNavigation": "Navegación principal",
 			"toggleNavigation": "Alternar navegación",
-			"brand": "Marca",
 			"toggleDropdown": "Alternar desplegable"
 		},
 		"pagination": {

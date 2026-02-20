@@ -49,7 +49,6 @@
 		"navbar": {
 			"mainNavigation": "Navigazione principale",
 			"toggleNavigation": "Attiva/disattiva navigazione",
-			"brand": "Marchio",
 			"toggleDropdown": "Attiva/disattiva menu a discesa"
 		},
 		"pagination": {

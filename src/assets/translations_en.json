@@ -49,7 +49,6 @@
 		"navbar": {
 			"mainNavigation": "Main navigation",
 			"toggleNavigation": "Toggle navigation",
-			"brand": "Brand",
 			"toggleDropdown": "Toggle dropdown"
 		},
 		"pagination": {
