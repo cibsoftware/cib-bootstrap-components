@@ -49,7 +49,6 @@
 		"navbar": {
 			"mainNavigation": "Hauptnavigation",
 			"toggleNavigation": "Navigation umschalten",
-			"brand": "Marke",
 			"toggleDropdown": "Dropdown umschalten"
 		},
 		"pagination": {
