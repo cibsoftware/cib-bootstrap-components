@@ -17,8 +17,15 @@
 
 -->
 <template>
-  <li @click="$emit('click', $event)">
-    <button class="dropdown-item" type="button" role="menuitem">
+  <li v-bind="$attrs">
+    <button
+      @click="$emit('click', $event)"
+      type="button"
+      role="menuitem"
+      class="dropdown-item"
+      :class="{ active: active }"
+      style="outline-offset: 0 !important;"
+    >
       <slot></slot>
     </button>
   </li>
@@ -26,6 +33,13 @@
 
 <script>
 export default {
-  name: 'BDropdownItemButton'
+  name: 'BDropdownItemButton',
+  emits: ['click'],
+  props: {
+    active: {
+      type: Boolean,
+      default: false
+    }
+  }
 }
 </script>
