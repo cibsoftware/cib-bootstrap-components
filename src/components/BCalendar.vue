@@ -127,13 +127,13 @@ export default {
       const firstDayOfMonth = new Date(year, month, 1)
       const lastDayOfMonth = new Date(year, month + 1, 0)
       const startDay = (firstDayOfMonth.getDay() + 6) % 7 // days in the last month
-      const endDay = ((lastDayOfMonth.getDay() + 6) % 7) -1 // days in the next month
+      const trailingDays = (7 - lastDayOfMonth.getDay()) % 7 // days in the next month (until Sunday)
 
       const days = []
 
       // Add days from the previous month to complete the initial week
-      for (let i = startDay - 1; i >= 0; i--) {
-        const prevDate = new Date(year, month, -i)
+      for (let i = startDay; i > 0; i--) {
+        const prevDate = new Date(year, month, 1 - i)
         days.push({ date: prevDate, day: prevDate.getDate(), isOtherMonth: true })
       }
 
@@ -143,7 +143,7 @@ export default {
       }
 
       // Fill the rest of the week with next month's days
-      for (let i = 1; i <= 7 - endDay; i++) {
+      for (let i = 1; i <= trailingDays; i++) {
         const date = new Date(year, month + 1, i)
         days.push({ date, day: date.getDate(), isOtherMonth: true })
       }
