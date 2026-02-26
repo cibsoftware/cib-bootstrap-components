@@ -21,7 +21,7 @@
     <div class="modal-dialog" :class="modalClasses" role="document">
       <div class="modal-content" :class="{ 'modal-dialog-scrollable': scrollable }">
         <div class="modal-header" :class="headerClass">
-          <h5 class="modal-title" :id="modalTitleId">{{ title }}</h5>
+          <h3 class="h5 modal-title" :id="modalTitleId">{{ title }}</h3>
           <button type="button" class="btn-close" @click="hide('headerclose')" :aria-label="$t('confirm.close')"></button>
         </div>
         <div class="modal-body" :class="bodyClass">
@@ -130,7 +130,7 @@ export default {
       if (!element.offsetParent && element !== document.body) {
         return false
       }
-      
+
       // Check if element is inside a collapsed/hidden dropdown menu
       const dropdownMenu = element.closest('.dropdown-menu')
       if (dropdownMenu) {
@@ -139,7 +139,7 @@ export default {
           return false
         }
       }
-      
+
       // Check if element is inside a collapsed navbar
       const navbarCollapse = element.closest('.navbar-collapse')
       if (navbarCollapse) {
@@ -148,7 +148,7 @@ export default {
           return false
         }
       }
-      
+
       return true
     },
     findFocusableFallback(element) {
@@ -164,7 +164,7 @@ export default {
           }
         }
       }
-      
+
       // General fallback: traverse up looking for a focusable parent that still exists
       let parent = element.parentElement
       while (parent && parent !== document.body) {
@@ -180,7 +180,7 @@ export default {
           parent = parent.parentElement
         }
       }
-      
+
       return null
     },
     show() {
