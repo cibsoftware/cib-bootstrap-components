@@ -110,21 +110,6 @@ export default {
         }
       })
 
-      if (week.length > 0) {
-        const daysToFill = 7 - week.length
-        const lastDayOfMonth = this.daysInMonth[this.daysInMonth.length - 1].date
-
-        for (let i = 1; i <= daysToFill; i++) {
-          const nextDate = new Date(
-            lastDayOfMonth.getFullYear(),
-            lastDayOfMonth.getMonth(),
-            lastDayOfMonth.getDate() + i
-          )
-          week.push({ date: nextDate, day: nextDate.getDate(), isOtherMonth: true })
-        }
-        weeks.push(week)
-      }
-
       return weeks
     },
     daysOfWeek() {
@@ -139,27 +124,27 @@ export default {
     daysInMonth() {
       const year = this.currentDate.getFullYear()
       const month = this.currentDate.getMonth()
-      const firstDay = new Date(year, month, 1)
-      const lastDay = new Date(year, month + 1, 0)
+      const firstDayOfMonth = new Date(year, month, 1)
+      const lastDayOfMonth = new Date(year, month + 1, 0)
+      const startDay = (firstDayOfMonth.getDay() + 6) % 7 // Adjust to start from monday (optional)
+      const endDay = (lastDayOfMonth.getDay() + 6) % 7 // Adjust to start from monday (optional)
 
       const days = []
-      let date = ''
 
-      // Days from previous month
-      for (let i = firstDay.getDay() - 1; i > 0; i--) {
-        date = new Date(year, month, 1 - i)
-        days.push({ date, day: date.getDate(), isOtherMonth: true })
+      // Add days from the previous month to complete the initial week
+      for (let i = startDay - 1; i >= 0; i--) {
+        const prevDate = new Date(year, month, -i)
+        days.push({ date: prevDate, day: prevDate.getDate(), isOtherMonth: true })
       }
 
-      // Days of the current month
-      for (let i = 1; i <= lastDay.getDate(); i++) {
-        date = new Date(year, month, i)
-        days.push({ date, day: i, isOtherMonth: false })
+      // Add days from the current month
+      for (let day = 1; day <= lastDayOfMonth.getDate(); day++) {
+        days.push({ date: new Date(year, month, day), day, isOtherMonth: false })
       }
 
       // Fill the rest of the week with next month's days
-      for (let i = lastDay.getDay(); i < 6; i++) {
-        date = new Date(year, month + 1, i - lastDay.getDay() + 1)
+      for (let i = 1; i < 7 - endDay; i++) {
+        const date = new Date(year, month + 1, i)
         days.push({ date, day: date.getDate(), isOtherMonth: true })
       }
 
