@@ -24,6 +24,7 @@
       role="menuitem"
       class="dropdown-item"
       :class="{ active: active }"
+      :aria-current="active ? 'true' : null"
       style="outline-offset: 0 !important;"
     >
       <slot></slot>

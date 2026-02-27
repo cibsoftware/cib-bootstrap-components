@@ -17,9 +17,10 @@
 
 -->
 <template>
-  <div class="calendar-container" role="region" aria-labelledby="calendar-header">
-    <input type="text" class="form-control mb-3 text-center" v-model="formattedSelectedDate" readonly
-      :aria-label="$t('bcomponents.calendar.selectedDate')" :placeholder="$t('bcomponents.calendar.noDate')" />
+  <div class="calendar-container" role="region" :aria-labelledby="`calendar-label-${uid}`">
+    <label :id="`calendar-label-${uid}`" :for="`date-selected-${uid}`" class="visually-hidden">{{ $t('bcomponents.calendar.selectedDate') }}</label>
+    <input type="text" :id="`date-selected-${uid}`" class="form-control mb-3 text-center" v-model="formattedSelectedDate" readonly
+      :placeholder="$t('bcomponents.calendar.noDate')" />
     <div class="calendar-header d-flex justify-content-between align-items-center mb-2">
       <div class="d-flex">
         <button class="btn btn-sm btn-outline-secondary me-2" @click="prevYear"
@@ -84,6 +85,10 @@ export default {
     showToday: {
       type: Boolean,
       default: true
+    },
+    uid: {
+      type: String,
+      default: () => `random-uid-${Math.random().toString(36).slice(2)}`
     }
   },
   data() {
