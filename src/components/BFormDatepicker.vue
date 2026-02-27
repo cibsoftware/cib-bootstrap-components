@@ -122,22 +122,7 @@ export default {
           week = []
         }
       })
-
-      if (week.length > 0) {
-        const daysToFill = 7 - week.length
-        const lastDayOfMonth = this.daysInMonth[this.daysInMonth.length - 1].date
-
-        for (let i = 1; i <= daysToFill; i++) {
-          const nextDate = new Date(
-            lastDayOfMonth.getFullYear(),
-            lastDayOfMonth.getMonth(),
-            lastDayOfMonth.getDate() + i
-          )
-          week.push({ date: nextDate, day: nextDate.getDate(), isOtherMonth: true })
-        }
-        weeks.push(week)
-      }
-
+      
       return weeks
     },
     daysInMonth() {
@@ -145,18 +130,26 @@ export default {
       const month = this.currentDate.getMonth()
       const firstDayOfMonth = new Date(year, month, 1)
       const lastDayOfMonth = new Date(year, month + 1, 0)
-      const startDay = firstDayOfMonth.getDay() === 0 ? 6 : firstDayOfMonth.getDay() - 1 // Adjust to start from monday (opcional)
+      const startDay = (firstDayOfMonth.getDay() + 6) % 7 // days in the last month
+      const trailingDays = (7 - lastDayOfMonth.getDay()) % 7 // days in the next month (until Sunday)
 
-      let days = []
+      const days = []
+
       // Add days from the previous month to complete the initial week
-      for (let i = 0; i < startDay; i++) {
-        const prevDate = new Date(year, month, i - startDay + 1)
+      for (let i = startDay; i > 0; i--) {
+        const prevDate = new Date(year, month, 1 - i)
         days.push({ date: prevDate, day: prevDate.getDate(), isOtherMonth: true })
       }
 
       // Add days from the current month
       for (let day = 1; day <= lastDayOfMonth.getDate(); day++) {
         days.push({ date: new Date(year, month, day), day, isOtherMonth: false })
+      }
+
+      // Fill the rest of the week with next month's days
+      for (let i = 1; i <= trailingDays; i++) {
+        const date = new Date(year, month + 1, i)
+        days.push({ date, day: date.getDate(), isOtherMonth: true })
       }
 
       return days
