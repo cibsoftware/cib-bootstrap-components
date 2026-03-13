@@ -20,6 +20,7 @@ standardNPMPipeline(
     coverageLcovPattern: 'target/coverage/lcov.info',
 
     // Publish configuration
+    npmAllowRepublish: false,
     npmCredentialsId: Constants.CIBSEVEN_NPM_CREDENTIALS_ID,
     npmDevRegistry: Constants.CIBSEVEN_NPM_REGISTRY_DEV_URL,
     npmReleaseRegistry: Constants.CIBSEVEN_NPM_REGISTRY_RELEASE_URL
