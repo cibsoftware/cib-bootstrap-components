@@ -58,6 +58,7 @@
 <script>
 export default {
   name: 'BFormInput',
+  emits: ['update:modelValue', 'blur', 'focus'],
   props: {
     modelValue: { type: [String, Number], default: '' },
     placeholder: { type: String, default: '' },
