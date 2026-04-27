@@ -31,14 +31,14 @@
   "dependencies": {},
   "peerDependencies": {
     "bootstrap": "^5.3.8",
-    "vue": "^3.5.16",
-    "vue-i18n": "^11.1.10",
-    "vue-router": "^4.5.1"
+    "vue": "^3.5.33",
+    "vue-i18n": "^11.4.0",
+    "vue-router": "^5.0.6"
   },
   "devDependencies": {
-    "vue": "3.5.16",
-    "vue-i18n": "11.1.10",
-    "vue-router": "4.5.1",
+    "vue": "3.5.33",
+    "vue-i18n": "11.4.0",
+    "vue-router": "5.0.6",
     "@eslint/js": "9.39.1",
     "@vitejs/plugin-vue": "5.2.4",
     "@vitest/coverage-istanbul": "3.1.3",
