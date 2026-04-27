@@ -42,8 +42,6 @@ export default mergeConfig(
           'src/__tests__/**',
 
           // Test and config files
-          'cypress/e2e/**', // Exclude Cypress tests
-          'cypress.config.js', // Exclude Cypress config
           'vite.config.js', // Exclude Vite config
           'vitest.config.js', // Exclude this config file itself
           '**/*.config.js', // Exclude all config files
