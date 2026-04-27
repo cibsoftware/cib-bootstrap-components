@@ -80,10 +80,11 @@ describe('library.js', () => {
         if (specialCases.includes(fileName)) {
           return
         }
-        if (!isSetupScript) {
-          const namePattern = new RegExp(String.raw`name:\s*'${fileName}'`)
-          expect(content).toMatch(namePattern, `File ${file} does not contain name: '${fileName}'`)
+        if (isSetupScript) {
+          return
         }
+        const namePattern = new RegExp(String.raw`name:\s*'${fileName}'`)
+        expect(content).toMatch(namePattern, `File ${file} does not contain name: '${fileName}'`)
       })
     })
   })
