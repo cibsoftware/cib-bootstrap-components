@@ -244,10 +244,8 @@ describe('i18n', () => {
       }
 
       // Report unused keys
-      if (stringLongKeys.length > 0) {
-        const message = `Unused translation keys in en (checked ${vueFiles.length} .vue files):\n` + stringLongKeys.map(k => `- ${k}`).join('\n')
-        expect(message).toBe('')
-      }
+      const message = (stringLongKeys.length > 0) ? `Unused translation keys in en (checked ${vueFiles.length} .vue files):\n` + stringLongKeys.map(k => `- ${k}`).join('\n') : ''
+      expect(message).toEqual('')
       expect(stringLongKeys.length).toBe(0)
     })
 
@@ -287,10 +285,8 @@ describe('i18n', () => {
       }
 
       // Report unused keys
-      if (notDeclaredKeys.length > 0) {
-        const message = `Unused translation keys in en (checked ${vueFiles.length} .vue files):\n` + notDeclaredKeys.map(k => `- ${k}`).join('\n')
-        expect(message).toBe('')
-      }
+      const message = (notDeclaredKeys.length > 0) ? `Unused translation keys in en (checked ${vueFiles.length} .vue files):\n` + notDeclaredKeys.map(k => `- ${k}`).join('\n') : ''
+      expect(message).toEqual('')
       expect(notDeclaredKeys.length).toBe(0)
     })
   })
