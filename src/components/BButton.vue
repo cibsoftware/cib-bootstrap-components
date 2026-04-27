@@ -34,6 +34,7 @@
 <script>
 export default {
   name: 'BButton',
+  emits: ['click', 'submit'],
   props: {
     variant: { type: String, default: 'primary' },
     block: { type: Boolean, default: false },

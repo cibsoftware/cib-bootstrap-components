@@ -69,6 +69,7 @@ import BButton from './BButton.vue'
 
 export default {
   name: 'BCalendar',
+  emits: ['update:modelValue'],
   components: {
     BButton
   },

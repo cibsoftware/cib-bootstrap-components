@@ -33,6 +33,7 @@ import * as Bootstrap from 'bootstrap'
 
 export default {
   name: 'BDropdown',
+  emits: ['shown', 'hidden'],
   props: {
     title: String,
     variant: String,

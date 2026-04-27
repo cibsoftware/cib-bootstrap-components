@@ -33,6 +33,7 @@
 <script>
 export default {
   name: 'BFormTextarea',
+  emits: ['update:modelValue', 'blur', 'focus'],
   props: {
     modelValue: { type: [String, Number], default: '' },
     placeholder: { type: String, default: '' },

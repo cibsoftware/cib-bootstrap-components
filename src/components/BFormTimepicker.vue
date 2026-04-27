@@ -60,6 +60,7 @@
 <script>
 export default {
   name: 'BFormTimepicker',
+  emits: ['update:modelValue', 'input'],
   props: {
     modelValue: { type: String, default: null },
     value: { type: String, default: null },

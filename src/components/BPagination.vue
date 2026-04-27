@@ -47,6 +47,7 @@
 <script>
 export default {
   name: 'BPagination',
+  emits: ['update:modelValue'],
   props: {
     modelValue: { type: Number, default: 1 },
     totalRows: { type: Number, required: true },

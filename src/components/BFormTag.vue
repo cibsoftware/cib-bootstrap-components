@@ -36,6 +36,7 @@
 <script>
 export default {
   name: 'BFormTag',
+  emits: ['remove', 'click'],
   props: {
     variant: {
       type: String,

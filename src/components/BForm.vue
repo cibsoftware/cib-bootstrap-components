@@ -29,6 +29,7 @@
 <script>
 export default {
   name: 'BForm',
+  emits: ['validation-failed', 'submit'],
   props: {
     novalidate: { type: Boolean, default: false },
     formClass: { type: String, default: '' },

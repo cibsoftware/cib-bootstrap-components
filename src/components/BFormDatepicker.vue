@@ -69,6 +69,7 @@
 <script>
 export default {
   name: 'BFormDatepicker',
+  emits: ['update:modelValue'],
   props: {
     modelValue: { type: [String, Date], default: () => new Date() },
     dateDisabledFn: { type: Function, default: null },
@@ -122,7 +123,7 @@ export default {
           week = []
         }
       })
-      
+
       return weeks
     },
     daysInMonth() {

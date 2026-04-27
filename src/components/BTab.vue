@@ -26,6 +26,7 @@
 <script>
 export default {
   name: 'BTab',
+  emits: ['click'],
   props: {
     id: { type: String, required: true },
     title: { type: String, required: true }
