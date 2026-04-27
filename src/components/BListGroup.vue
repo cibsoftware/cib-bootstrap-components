@@ -25,6 +25,7 @@
 <script>
 export default {
   name: 'BListGroup',
+  emits: ['click'],
   props: {
     label: { type: String, default: '' },
     labelFor: { type: String, default: null },

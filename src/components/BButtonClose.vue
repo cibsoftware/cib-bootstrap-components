@@ -22,6 +22,7 @@
 
 <script>
 export default {
-  name: 'BButtonClose'
+  name: 'BButtonClose',
+  emits: ['click']
 }
 </script>

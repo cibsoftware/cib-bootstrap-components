@@ -30,6 +30,7 @@
 <script>
 export default {
   name: 'BCollapse',
+  emits: ['update:modelValue'],
   props: {
     id: {
       type: String,

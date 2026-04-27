@@ -30,6 +30,7 @@ import BButtonClose from './BButtonClose.vue'
 
 export default {
   name: 'BAlert',
+  emits: ['dismissed'],
   props: {
     variant: { type: String, default: 'primary' },
     show: { type: [Number, Boolean], default: false }

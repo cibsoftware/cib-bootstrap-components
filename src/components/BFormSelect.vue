@@ -27,7 +27,7 @@
       :aria-describedby="ariaDescribedby"
       @blur="handleBlur"
       @focus="handleFocus">
-      <slot name="first"></slot>      
+      <slot name="first"></slot>
       <slot>
         <template v-for="(group, groupIndex) in groupedOptions" :key="groupIndex">
           <optgroup v-if="group.label" :label="group.label">
@@ -51,6 +51,7 @@
 <script>
 export default {
   name: 'BFormSelect',
+  emits: ['update:modelValue', 'blur', 'focus'],
   props: {
     helloWorld: {},
     modelValue: { type: [String, Number], default: null },

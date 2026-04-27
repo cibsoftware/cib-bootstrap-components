@@ -31,6 +31,7 @@
 <script>
 export default {
   name: 'BListGroupItem',
+  emits: ['mousedown', 'mouseenter', 'mouseleave'],
   props: {
     to: { type: [String, Object], default: null },
     href: { type: String, default: null },

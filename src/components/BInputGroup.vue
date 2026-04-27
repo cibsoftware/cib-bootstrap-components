@@ -35,6 +35,7 @@
 <script>
 export default {
   name: 'BInputGroup',
+  emits: ['update:modelValue'],
   props: {
     modelValue: { type: [String, Number], default: '' },
     id: { type: String, default: null },

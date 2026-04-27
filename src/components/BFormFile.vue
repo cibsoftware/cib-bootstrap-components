@@ -29,6 +29,7 @@
 <script>
 export default {
   name: 'BFormFile',
+  emits: ['update:modelValue'],
   props: {
     id: { type: String },
     label: { type: String },

@@ -44,6 +44,7 @@ import BButton from './BButton.vue'
 
 export default {
   name: 'BModal',
+  emits: ['show', 'shown', 'hide', 'hidden'],
   components: {
     BButton
   },
