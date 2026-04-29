@@ -26,7 +26,9 @@
     :to="isRouterLink ? to : null"
     :role="tag !== 'button' && tag !== 'router-link' ? 'button' : null"
     :aria-disabled="disabled ? 'true' : null"
-    :disabled="disabled && tag === 'button'">
+    :disabled="disabled && tag === 'button'"
+    @click="click"
+    @submit="submit">
       <slot></slot>
   </component>
 </template>
