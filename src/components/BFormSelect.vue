@@ -78,9 +78,7 @@ export default {
         if (typeof option === 'object' && option.label && Array.isArray(option.options)) {
           return option
         }
-        let normalizedOption = {}
-        if (typeof option === 'object') normalizedOption = option
-        else normalizedOption = { text: option, value: option }
+        const normalizedOption = (typeof option === 'object') ? option : { text: option, value: option }
         return { options: [normalizedOption] }
       })
     },
