@@ -34,7 +34,12 @@ export default {
       content,
       placement,
       trigger: event,
-      html: true
+      // Callers pass markup here, so the content is rendered as HTML. It can
+      // carry business data, so it is run through Bootstrap's allow list
+      // first - stated explicitly rather than relying on the default, since
+      // dropping it would turn every caller into an injection point.
+      html: true,
+      sanitize: true
     })
 
     el._bs_popover = popover
