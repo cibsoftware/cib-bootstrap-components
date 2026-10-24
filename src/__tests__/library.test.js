@@ -16,11 +16,12 @@
  */
 import { describe, it, expect, vi } from 'vitest'
 import * as library from '../library.js'
+import { normalizeLanguage } from '../utils/language.js'
 import { findComponents } from './utils.js'
 import fs from 'node:fs'
 import path from 'node:path'
 
-const languages = ['de', 'en', 'es', 'it', 'ru', 'ua']
+const languages = ['de', 'en', 'es', 'it', 'ru', 'ua', 'zh', 'zh-tw']
 
 /**
  * Component name to its import path
@@ -109,6 +110,26 @@ describe('library.js', () => {
     it('should fall back to English for unsupported language', () => {
       library.mergeLocaleMessage(mockI18n, 'fr')
       expect(mockI18n.global.mergeLocaleMessage).toHaveBeenCalledWith('fr', expect.any(Object))
+    })
+
+    it('should normalize Chinese language tags', () => {
+      const traditional = ['zh-TW', 'zh-HK', 'zh-MO', 'zh-Hant', 'zh_TW']
+      traditional.forEach(tag => {
+        expect(normalizeLanguage(tag)).toBe('zh-tw')
+      })
+
+      const simplified = ['zh', 'zh-CN', 'zh-Hans', 'zh-SG']
+      simplified.forEach(tag => {
+        expect(normalizeLanguage(tag)).toBe('zh')
+      })
+
+      expect(normalizeLanguage('de-DE')).toBe('de')
+      expect(normalizeLanguage(undefined)).toBe('en')
+    })
+
+    it('should merge translations for a traditional Chinese tag', () => {
+      library.mergeLocaleMessage(mockI18n, 'zh-TW')
+      expect(mockI18n.global.mergeLocaleMessage).toHaveBeenCalledWith('zh-tw', expect.any(Object))
     })
 
     it.each(languages)('should have translation content for %s language', async (lang) => {
