@@ -79,7 +79,7 @@ export default {
       return this.labelSize ? `col-form-label-${this.labelSize}` : ''
     },
     labelId() {
-      return this.labelFor || `${this.id || 'form-group'}__label`
+      return `${this.labelFor || this.id || 'form-group'}__label`
     }
   }
 }
