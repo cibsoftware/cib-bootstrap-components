@@ -22,6 +22,9 @@ import es from '../assets/translations_es.json'
 import it from '../assets/translations_it.json'
 import ru from '../assets/translations_ru.json'
 import ua from '../assets/translations_ua.json'
+import zh from '../assets/translations_zh.json'
+import zhTw from '../assets/translations_zh-tw.json'
+import { normalizeLanguage } from '../utils/language.js'
 
 export const languages = {
   en,
@@ -29,12 +32,14 @@ export const languages = {
   es,
   it,
   ru,
-  ua
+  ua,
+  zh,
+  'zh-tw': zhTw
 }
 
 const i18n = createI18n({
   legacy: false,
-  locale: localStorage.getItem('language') || navigator.language.split('-')[0] || navigator.userLanguage || 'en',
+  locale: normalizeLanguage(localStorage.getItem('language') || navigator.language || navigator.userLanguage || 'en'),
   fallbackLocale: 'en',
   messages: languages
 })

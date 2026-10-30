@@ -1,0 +1,60 @@
+{
+	"confirm": {
+		"ok": "確定",
+		"cancel": "取消",
+		"close": "關閉"
+	},
+	"bcomponents": {
+		"ariaLabelDropdownGroup": "下拉式選單群組",
+		"calendar": {
+			"selectedDate": "已選取日期",
+			"noDate": "無日期",
+			"prevYear": "上一年",
+			"prevMonth": "上個月",
+			"nextMonth": "下個月",
+			"nextYear": "下一年",
+			"daysOfWeek": "週一,週二,週三,週四,週五,週六,週日",
+			"today": "今天",
+			"clearSelection": "清除選取"
+		},
+		"avatar": {
+			"avatarFor": "{name} 的頭像",
+			"defaultAvatar": "頭像"
+		},
+		"formTag": {
+			"remove": "移除標籤"
+		},
+		"timepicker": {
+			"label": "時間選擇器",
+			"selectedTime": "已選取時間",
+			"incrementHour": "增加小時",
+			"decrementHour": "減少小時",
+			"incrementMinute": "增加分鐘",
+			"decrementMinute": "減少分鐘",
+			"hour": "小時",
+			"minute": "分鐘",
+			"clearSelection": "清除選取",
+			"noTimeSelected": "未選取時間"
+		},
+		"datepicker": {
+			"label": "日期選擇器",
+			"selectedDate": "已選取日期",
+			"noDate": "無日期",
+			"prevMonth": "上個月",
+			"nextMonth": "下個月",
+			"daysOfWeek": "週一,週二,週三,週四,週五,週六,週日",
+			"selectToday": "今天",
+			"clearSelection": "清除選取"
+		},
+		"navbar": {
+			"mainNavigation": "主導覽",
+			"toggleNavigation": "切換導覽",
+			"toggleDropdown": "切換下拉式選單"
+		},
+		"pagination": {
+			"label": "分頁",
+			"prevPage": "上一頁",
+			"nextPage": "下一頁"
+		}
+	}
+}
