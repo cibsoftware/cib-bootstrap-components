@@ -17,13 +17,19 @@
 
 -->
 <template>
-  <component
+  <li v-if="isLink" :class="['list-group-item', itemClasses]">
+    <a :href="linkHref" class="d-block stretched-link text-reset text-decoration-none"
+      :aria-current="active ? 'page' : null" :aria-disabled="disabled ? 'true' : null" :tabindex="disabled ? -1 : null"
+      @click="handleLinkClick">
+      <slot></slot>
+    </a>
+  </li>
+  <component v-else
     :is="itemTag" :class="['list-group-item', itemClasses]"
     :role="isButton ? 'button' : 'listitem'" :aria-current="active ? 'true' : null"
     :aria-disabled="disabled ? 'true' : null" :tabindex="disabled ? -1 : 0"
-    @click="handleClick" @mousedown="$emit('mousedown', $event)" style="cursor: pointer"
-    @keydown.space.prevent="handleClick" @keydown.enter.prevent="handleClick"
-    @mouseenter="$emit('mouseenter', $event)" @mouseleave="$emit('mouseleave', $event)">
+    @click="handleClick" style="cursor: pointer"
+    @keydown.space.prevent="handleClick" @keydown.enter.prevent="handleClick">
       <slot></slot>
   </component>
 </template>
@@ -31,7 +37,8 @@
 <script>
 export default {
   name: 'BListGroupItem',
-  emits: ['mousedown', 'mouseenter', 'mouseleave'],
+  // mousedown, mouseenter and mouseleave listeners fall through to the root element
+  emits: [],
   props: {
     to: { type: [String, Object], default: null },
     href: { type: String, default: null },
@@ -58,26 +65,26 @@ export default {
     isButton() {
       return this.button
     },
+    linkHref() {
+      return this.to ? this.$router?.resolve(this.to).href : this.href
+    },
     itemTag() {
-      if (this.isLink) {
-        return 'a'
-      }
       return this.isButton ? 'button' : 'li'
     }
   },
   methods: {
     handleClick(event) {
+      if (this.disabled) event.preventDefault()
+    },
+    handleLinkClick(event) {
       if (this.disabled) {
         event.preventDefault()
         return
       }
-      if (this.isLink) {
-        if (this.to) {
-          this.$router.push(this.to)
-        } else if (this.href) {
-          globalThis.location.href = this.href
-        }
-      }
+      // Leave modified clicks (new tab, new window) to the browser
+      if (!this.to || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return
+      event.preventDefault()
+      this.$router.push(this.to)
     }
   }
 }

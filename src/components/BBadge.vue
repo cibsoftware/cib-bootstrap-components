@@ -19,8 +19,7 @@
 <template>
   <span
     :class="['badge', variantClass, pillClass]"
-    :style="customStyle"
-    role="status">
+    :style="customStyle">
     <slot></slot>
   </span>
 </template>
