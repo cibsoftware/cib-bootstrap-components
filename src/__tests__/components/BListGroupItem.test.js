@@ -49,6 +49,14 @@ describe('BListGroupItem', () => {
       expect(link.text()).toBe('Filter 1')
     })
 
+    // The webclient's profile pages switch tabs with links like '?tab=groups' on the current page
+    it('resolves a query-only link against the current page', async () => {
+      router.addRoute({ path: '/account/:userId', component: { template: '<div />' } })
+      await router.push('/account/demo?tab=profile')
+
+      expect(mountItem({ to: '?tab=groups' }).find('a').attributes('href')).toBe('#/account/demo?tab=groups')
+    })
+
     it('marks only the active link as the current page', () => {
       expect(mountItem({ to: '/tasks/1', active: true }).find('a').attributes('aria-current')).toBe('page')
       expect(mountItem({ to: '/tasks/1' }).find('a').attributes('aria-current')).toBeUndefined()
