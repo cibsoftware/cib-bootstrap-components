@@ -25,15 +25,14 @@ export default mergeConfig(
       environment: 'jsdom',
       // Node 25+ ships its own global 'localStorage', which shadows jsdom's and is
       // undefined without '--localstorage-file'. Turn it off in the test workers.
-      poolOptions: {
-        forks: { execArgv: ['--no-experimental-webstorage'] },
-      },
+      execArgv: ['--no-experimental-webstorage'],
       exclude: [...configDefaults.exclude, 'e2e/**'],
       root: fileURLToPath(new URL('./', import.meta.url)),
       coverage: {
         provider: 'istanbul',
         reporter: ['text', 'lcov', 'cobertura'], // 'text', 'html', 'lcov', 'cobertura'
         reportsDirectory: './target/coverage',
+        include: ['src/**'],
         exclude: [
           // Build artifacts and minified files
           'dist/**',
@@ -52,7 +51,7 @@ export default mergeConfig(
           '**/*.config.js', // Exclude all config files
 
           // Exclude Vite internals
-          '**/\0**', // Exclude Vite virtual modules
+          '\0*', // Exclude Vite virtual modules
         ],
         excludeNodeModules: true,
       },
